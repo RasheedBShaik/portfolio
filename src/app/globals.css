@@ -1,0 +1,58 @@
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2 {
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --nav: #afeeee;
+  --text: #00ffff;
+  --bg: #0c192c;
+  --react: #61dafb;
+  --html: #e44d26;
+  --css: #2965f1;
+  --firebase: #ffa000;
+  --javascript: #f0db4f;
+  --tailwind: #38bdf8;
+  --githubpages: #24292e;
+  --projectcard: rgba(250, 250, 250, 0.05);
+}
+
+.bubbles {
+  /* position: relative; */
+  top: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.bubbles span {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: #4fc3dc;
+  box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
+  animation: animate 15s linear infinite;
+  animation-duration: calc(125s / var(--i));
+}
+.bubbles span:nth-child(even) {
+  background-color: #ff2d75;
+  box-shadow: 0 0 0 10px #ff2d7544, 0 0 50px #ff2d75, 0 0 100px #ff2d75;
+}
+@keyframes animate {
+  0% {
+    transform: translateY(100vh) scale(0);
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+  }
+}
