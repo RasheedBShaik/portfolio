@@ -33,6 +33,7 @@ h2 {
   display: flex;
   justify-content: space-around;
 }
+
 .bubbles span {
   position: relative;
   width: 30px;
@@ -54,5 +55,11 @@ h2 {
   }
   100% {
     transform: translateY(-10vh) scale(1);
+  }
+}
+@media(max-width:640px){
+  .bubbles span{
+    width:15px;
+    height:15px;
   }
 }

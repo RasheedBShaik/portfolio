@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { div } from "framer-motion/client";
+import Link from "next/link";
+
 export const Projects = () => {
   return (
     <div
@@ -53,12 +54,12 @@ export const Projects = () => {
                 technologies.
               </div>
               <div className="flex justify-between">
-                <div className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                <Link href={"https://github.com/rasheedbshaik/bazar"}  target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
-                </div>
-                <div className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                </Link>
+                <Link href={"https://rasheedbshaik.github.io/bazar"}  target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -98,12 +99,12 @@ export const Projects = () => {
                 delivering great user experiences.
               </div>
               <div className="flex justify-between">
-                <div className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                <Link href={"https://github.com/RasheedBShaik/portfolio"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
-                </div>
-                <div className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                </Link>
+                <Link href={""} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -144,12 +145,12 @@ export const Projects = () => {
                 real-time interaction.
               </div>
               <div className="flex justify-between">
-                <div className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                <Link href={"https://github.com/RasheedBShaik/Tic-Tac-Toe"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
-                </div>
-                <div className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                </Link>
+                <Link href={"https://rasheedbshaik.github.io/Tic-Tac-Toe"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -193,12 +194,12 @@ export const Projects = () => {
                 responsiveness using HTML, CSS, and JavaScript.
               </div>
               <div className="flex justify-between">
-                <div className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                <Link href={"https://github.com/RasheedBShaik/Chat-App"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
-                </div>
-                <div className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                </Link>
+                <Link href={"https://rasheedbshaik.github.io/Chat-App"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -238,12 +239,12 @@ export const Projects = () => {
                 navigation and design.
               </div>
               <div className="flex justify-between">
-                <div className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                <Link href={"https://github.com/RasheedBShaik/e-commerce-ui"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
-                </div>
-                <div className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                </Link>
+                <Link href={"https://rasheedbshaik.github.io/e-commerce-ui"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -288,12 +289,12 @@ export const Projects = () => {
                 create a user-friendly interface. take a look to know more
               </div>
               <div className="flex justify-between">
-                <div className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                <Link href={"https://github.com/RasheedBShaik/monito"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
-                </div>
-                <div className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                </Link>
+                <Link href={"https://rasheedbshaik.github.io/monito"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
-                </div>
+                </Link>
               </div>
             </div>
           </div>
