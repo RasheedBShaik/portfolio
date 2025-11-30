@@ -24,6 +24,72 @@ export const Projects = () => {
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
+            <div className=" flex flex-col p-5 gap-5">
+              <div className="flex flex-col">
+              <div className="text-4xl w-full font-bold">Product Store</div>
+              <div className=" pl-2">(user and admin two websites)</div>
+              </div>
+              <img
+                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
+                src="./images/user-site.png"
+                alt=""
+              />
+              <div className="flex w-full items-start gap-4">
+                <div className="rounded-full font-semibold py-1 px-3 bg-white text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  NextJs
+                </div>
+                <div className="rounded-full font-semibold py-1 px-3 bg-[#2D3328] text-[#6cc24a] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  NodeJs
+                </div>
+                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  Tailwind
+                </div>
+              </div>
+              <div className="text-md">
+                This project includes a user-facing site that displays each product’s name, price, and image in a clean, minimal layout. Authorized administrators can access a connected admin panel through a secure login that requires valid credentials. The admin panel provides full control to add and edit product details, update pricing, and manage images, showcasing both a user-friendly front end and a functional, secure back end.
+                <div className=" text-3xl mt-0.5">credentials</div>
+                <div className="pl-2">Name - name</div>
+                <div className="pl-2">Password - password</div>
+              </div>
+              <div className="flex justify-between">
+
+                <div className="flex flex-col">
+                  <div className="text-center py-1">
+                    User-site
+                  </div>
+                <Link href={"https://github.com/RasheedBShaik/u-product-store"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                  Source Code
+                </Link>
+                </div>
+
+                <div className="flex flex-col">
+                  <div className="text-center py-1">
+                    Admin-site
+                  </div>
+                <Link href={"https://github.com/RasheedBShaik/product-store"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                  Source Code
+                </Link>
+                </div>
+
+                <div className="flex flex-col">
+                  <div className="text-center py-1">User-site to admin site</div>
+                <Link href={"https://u-product-store-zgez.onrender.com/"} target="_blank" className="text-center text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                  View Live
+                </Link>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </motion.div>
+        {/* 2 */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
             <div className="flex flex-col p-5 gap-5">
               <div className="text-4xl w-full font-bold">Bazar</div>
               <img
@@ -52,7 +118,11 @@ export const Projects = () => {
                 filters, and user authentication. This project showcases my
                 skills in front-end development and integrating modern web
                 technologies.
+                <div className=" text-3xl mt-0.5">test credentials or you can create one</div>
+                <div className="pl-2">Email - test@gmail.com</div>
+                <div className="pl-2">Password - test12345</div>
               </div>
+
               <div className="flex justify-between">
                 <Link href={"https://github.com/rasheedbshaik/bazar"}  target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
@@ -64,51 +134,7 @@ export const Projects = () => {
             </div>
           </div>
         </motion.div>
-        {/* 2 */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
-            <div className=" flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">Portfolio</div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/portfolio.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div className="rounded-full font-semibold py-1 px-3 bg-white text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  NextJs
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--firebase)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Firebase
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Tailwind
-                </div>
-              </div>
-              <div className="text-md">
-                I’m a passionate web developer with experience in building
-                responsive, user-friendly websites. Skilled in HTML, CSS,
-                React,Next and Tailwind CSS, I create dynamic, visually
-                appealing web applications. My projects demonstrate my
-                commitment to clean code, performance optimization, and
-                delivering great user experiences.
-              </div>
-              <div className="flex justify-between">
-                <Link href={"https://github.com/RasheedBShaik/portfolio"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                <Link href={""} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        
         {/* 3 */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
