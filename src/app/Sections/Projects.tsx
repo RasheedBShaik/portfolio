@@ -72,7 +72,7 @@ export const Projects = () => {
                 </div>
 
                 <div className="flex flex-col">
-                  <div className="text-center py-1">User-site to admin site</div>
+                  <div className="text-center py-1">User site</div>
                 <Link href={"https://u-product-store-zgez.onrender.com/"} target="_blank" className="text-center text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
                 </Link>
