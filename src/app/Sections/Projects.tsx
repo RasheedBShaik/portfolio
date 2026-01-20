@@ -52,7 +52,7 @@ export const Projects = () => {
                 <div className="pl-2">Password - password</div>
               </div>
               <div className="flex justify-between">
-
+                
                 <div className="flex flex-col">
                   <div className="text-center py-1">
                     User-site
@@ -144,37 +144,31 @@ export const Projects = () => {
         >
           <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl">
             <div className=" flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">Tic-Tac-Toe</div>
+              <div className="text-4xl w-full font-bold">Furniro – Furniture Shop</div>
               <img
                 className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/TicTacToe.png"
+                src="./images/furniro-furniture-shop.png"
                 alt=""
               />
               <div className="flex w-full items-start gap-4">
                 <div className="rounded-full font-semibold py-1 px-3 text-[#000] bg-[var(--react)] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
                   React
                 </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--firebase)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Firebase
+                <div className="rounded-full font-semibold py-1 px-3 bg-[#2D3328] text-[#6cc24a] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  NodeJs
                 </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--css)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  CSS
+                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  Tailwind
                 </div>
               </div>
               <div className="text-md">
-                A responsive Tic Tac Toe game built with React, featuring
-                real-time multiplayer using Firebase as a Socket.IO alternative.
-                It includes turn tracking, win detection (with draw logic
-                removed for a more engaging experience), instant resets, and
-                dynamic UI powered by React Hooks. Deployed on GitHub Pages,
-                this project showcases my skills in state management and
-                real-time interaction.
+                Furniro is a modern and responsive furniture shop website designed to showcase premium furniture collections. It features a clean UI, intuitive navigation, and well-structured product sections to enhance the user experience. This project highlights my skills in responsive design, layout structuring, and creating visually appealing web interfaces.
               </div>
               <div className="flex justify-between">
-                <Link href={"https://github.com/RasheedBShaik/Tic-Tac-Toe"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                <Link href={"https://github.com/RasheedBShaik/furniture-shop"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
                   Source Code
                 </Link>
-                <Link href={"https://rasheedbshaik.github.io/Tic-Tac-Toe"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                <Link href={"https://furniro-furniture-shop.vercel.app/"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
                   View Live
                 </Link>
               </div>
