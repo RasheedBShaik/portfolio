@@ -16,7 +16,54 @@ export const Projects = () => {
         Projects
       </div>
       <div className="py-18 m-auto grid gridcols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-between text-[var(--text)]">
+
         {/* 1 */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl">
+            <div className=" flex flex-col p-5 gap-5">
+              <div className="text-4xl w-full font-bold">Furniro – Furniture Shop</div>
+              <img
+                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
+                src="./images/furniro-furniture-shop.png"
+                alt=""
+              />
+              <div className="flex w-full items-start gap-4">
+                <div className="rounded-full font-semibold py-1 px-3 text-[#000] bg-[var(--react)] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  React
+                </div>
+                <div className="rounded-full font-semibold py-1 px-3 bg-[#2D3328] text-[#6cc24a] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  NodeJs
+                </div>
+                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
+                  Tailwind
+                </div>
+              </div>
+              <div className="text-md">
+                Furniro is a modern and responsive furniture shop website designed to showcase premium furniture collections. It features a clean UI, intuitive navigation, and well-structured product sections to enhance the user experience. This project highlights my skills in responsive design, layout structuring, and creating visually appealing web interfaces.
+              </div>
+              <div>              
+                <div className=" text-3xl mt-0.5">Admin account credentials</div>
+                <div className="pl-2">username - admin</div>
+                <div className="pl-2">Password - password</div>
+              </div>
+              <div className="flex justify-between">
+                <Link href={"https://github.com/RasheedBShaik/furniture-shop"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
+                  Source Code
+                </Link>
+                <Link href={"https://furniro-furniture-shop.vercel.app/"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
+                  View Live
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 2 */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
@@ -77,57 +124,11 @@ export const Projects = () => {
                   View Live
                 </Link>
                 </div>
-
               </div>
             </div>
           </div>
         </motion.div>
-        {/* 2 */}
         
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl">
-            <div className=" flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">Furniro – Furniture Shop</div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/furniro-furniture-shop.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div className="rounded-full font-semibold py-1 px-3 text-[#000] bg-[var(--react)] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  React
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[#2D3328] text-[#6cc24a] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  NodeJs
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Tailwind
-                </div>
-              </div>
-              <div className="text-md">
-                Furniro is a modern and responsive furniture shop website designed to showcase premium furniture collections. It features a clean UI, intuitive navigation, and well-structured product sections to enhance the user experience. This project highlights my skills in responsive design, layout structuring, and creating visually appealing web interfaces.
-              </div>
-              <div>              
-                <div className=" text-3xl mt-0.5">Admin account credentials</div>
-                <div className="pl-2">username - admin</div>
-                <div className="pl-2">Password - password</div>
-              </div>
-              <div className="flex justify-between">
-                <Link href={"https://github.com/RasheedBShaik/furniture-shop"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                <Link href={"https://furniro-furniture-shop.vercel.app/"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
         {/* 3 */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
