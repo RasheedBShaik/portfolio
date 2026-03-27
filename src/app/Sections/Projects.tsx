@@ -1,332 +1,142 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Tooltip, Typography, ConfigProvider } from "antd";
+import { Github, ExternalLink, ShieldCheck, ArrowRight, Terminal, Code2, Layers, Cpu, Globe } from "lucide-react";
 import Link from "next/link";
+import { projectData } from "../../../projectsData";
 
-export const Projects = () => {
+const { Title, Text } = Typography;
+
+export default function Projects() {
+  // We only take the first 4 for the home page
+  const featured = projectData.slice(0, 4);
+
   return (
-    <div
-      id="projects"
-      className="text-[var(--text)] bg-[var(--bg)] px-3 lg:px-3 "
-    >
-      <div
-        className="text-center text-xl md:3xl lg:5xl font-semibold m-auto max-w-[350px] tracking-[13px] border-8 border-[var(--text)]
-        p-8   "
-      >
-        Projects
-      </div>
-      <div className="py-18 m-auto grid gridcols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-between text-[var(--text)]">
+    <ConfigProvider theme={{ token: { colorPrimary: "#3b82f6" } }}>
+      <section id="projects" className="relative w-full bg-[#050505] py-32 px-6 font-syne overflow-hidden">
+        {/* Background Decorative Element */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent pointer-events-none" />
 
-        {/* 1 */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl">
-            <div className=" flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">Furniro – Furniture Shop</div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/furniro-furniture-shop.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div className="rounded-full font-semibold py-1 px-3 text-[#000] bg-[var(--react)] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  React
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[#2D3328] text-[#6cc24a] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  NodeJs
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Tailwind
-                </div>
+        <div className="mx-auto max-w-6xl relative z-10">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-blue-400">
+                <Cpu size={14} className="animate-pulse" />
+                Featured Deployments
               </div>
-              <div className="text-md">
-                Furniro is a modern and responsive furniture shop website designed to showcase premium furniture collections. It features a clean UI, intuitive navigation, and well-structured product sections to enhance the user experience. This project highlights my skills in responsive design, layout structuring, and creating visually appealing web interfaces.
-              </div>
-              <div>              
-                <div className=" text-3xl mt-0.5">Admin account credentials</div>
-                <div className="pl-2">username - admin</div>
-                <div className="pl-2">Password - password</div>
-              </div>
-              <div className="flex justify-between">
-                <Link href={"https://github.com/RasheedBShaik/furniture-shop"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                <Link href={"https://furniro-furniture-shop.vercel.app/"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+              <Title level={1} className="!text-white !m-0 !text-6xl md:!text-8xl !font-black uppercase tracking-tighter leading-none">
+                Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-light">Works</span>
+              </Title>
+            </motion.div>
 
-        {/* 2 */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
-            <div className=" flex flex-col p-5 gap-5">
-              <div className="flex flex-col">
-              <div className="text-4xl w-full font-bold">Product Store</div>
-              <div className=" pl-2">(user and admin two websites)</div>
-              </div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/user-site.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div className="rounded-full font-semibold py-1 px-3 bg-white text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  NextJs
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[#2D3328] text-[#6cc24a] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  NodeJs
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Tailwind
-                </div>
-              </div>
-              <div className="text-md">
-                This project includes a user-facing site that displays each product’s name, price, and image in a clean, minimal layout. Authorized administrators can access a connected admin panel through a secure login that requires valid credentials. The admin panel provides full control to add and edit product details, update pricing, and manage images, showcasing both a user-friendly front end and a functional, secure back end.
-                <div className=" text-3xl mt-0.5">Credentials</div>
-                <div className="pl-2">Name - name</div>
-                <div className="pl-2">Password - password</div>
-              </div>
-              <div className="flex justify-between">
-                
-                <div className="flex flex-col">
-                  <div className="text-center py-1">
-                    User-site
-                  </div>
-                <Link href={"https://github.com/RasheedBShaik/u-product-store"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                </div>
+            <Text className="text-slate-500 uppercase text-[10px] font-bold tracking-[0.2em] md:text-right max-w-[200px]">
+              A curated selection of high-performance web systems.
+            </Text>
+          </div>
 
-                <div className="flex flex-col">
-                  <div className="text-center py-1">
-                    Admin-site
-                  </div>
-                <Link href={"https://github.com/RasheedBShaik/product-store"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                </div>
+          {/* Project List */}
+          <div className="flex flex-col border-t border-white/10">
+            {featured.map((project, index) => (
+              <ProjectRow key={index} project={project} index={index} />
+            ))}
+          </div>
 
-                <div className="flex flex-col">
-                  <div className="text-center py-1">User site</div>
-                <Link href={"https://u-product-store-zgez.onrender.com/"} target="_blank" className="text-center text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        
-        {/* 3 */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
-            <div className="flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">Bazar</div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/bazar.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div
-                  className="rounded-full font-semibold py-1 px-3 text-[#000] bg-[var(--react)]  hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out
-                 "
-                >
-                  React
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--firebase)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Firebase
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--css)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  CSS
-                </div>
-              </div>
-              <div className="text-md">
-                Bazar is a front-end book-selling website inspired by Flipkart,
-                built with HTML, CSS, JavaScript, React, and Firebase. It
-                features a responsive design with search functionality, category
-                filters, and user authentication. This project showcases my
-                skills in front-end development and integrating modern web
-                technologies.
-                <div className=" text-3xl mt-0.5">Test credentials or you can create one</div>
-                <div className="pl-2">Email - test@gmail.com</div>
-                <div className="pl-2">Password - test12345</div>
-              </div>
-
-              <div className="flex justify-between">
-                <Link href={"https://github.com/rasheedbshaik/bazar"}  target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                <Link href={"https://rasheedbshaik.github.io/bazar"}  target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        {/* 4 */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
-            <div className="flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">Chat App</div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition transform duration-600"
-                src="./images/chatApp.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div
-                  className="rounded-full font-semibold py-1 px-3 text-[#000] bg-[var(--react)] hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out
-                 "
-                >
-                  React
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--javascript)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Javascript
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--css)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  CSS
-                </div>
-              </div>
-              <div className="text-md">
-                A responsive and interactive front-end Chat App simulating
-                real-world messaging platforms. Features a scrollable contact
-                list with dynamic chat loading on selection. Includes a chat
-                window with message display, input box, and simulated send
-                functionality. Offers user actions like viewing profile, mute,
-                and block for each contact. Designed with mobile-first
-                responsiveness using HTML, CSS, and JavaScript.
-              </div>
-              <div className="flex justify-between">
-                <Link href={"https://github.com/RasheedBShaik/Chat-App"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                <Link href={"https://rasheedbshaik.github.io/Chat-App"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        {/* 5 */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
-            <div className="flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">E-Commerce-UI</div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/e-commerce.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div className="rounded-full font-semibold py-1 px-3 text-white bg-[var(--html)]  hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out                 ">
-                  HTML
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--css)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  CSS
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--githubpages)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  GitHub Pages
-                </div>
-              </div>
-              <div className="text-md">
-                A multi-page e-commerce website built using only HTML and CSS,
-                featuring product pages, a shopping cart, and a checkout
-                process. The design is fully responsive, ensuring a seamless
-                experience across devices. HTML was used for structure, and CSS
-                for styling and layout, with attention to user-friendly
-                navigation and design.
-              </div>
-              <div className="flex justify-between">
-                <Link href={"https://github.com/RasheedBShaik/e-commerce-ui"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                <Link href={"https://rasheedbshaik.github.io/e-commerce-ui"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        {/* 6 */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <div className=" flex bg-[var(--projectcard)] h-full gap-4 flex-col text-bold items-center rounded-xl ">
-            <div className="flex flex-col p-5 gap-5">
-              <div className="text-4xl w-full font-bold">Monito Pet Store</div>
-              <img
-                className=" aspect-[2/1] rounded-xl hover:scale-105 ease-in-out transition-transform duration-600"
-                src="./images/monito.png"
-                alt=""
-              />
-              <div className="flex w-full items-start gap-4">
-                <div
-                  className="rounded-full font-semibold py-1 px-3 text-[#000] bg-[var(--react)]  hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out
-                 "
-                >
-                  React
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--tailwind)] text-black hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  Tailwind
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--css)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  CSS
-                </div>
-                <div className="rounded-full font-semibold py-1 px-3 bg-[var(--html)] text-white hover:bg-black hover:text-white transition transform hover:scale-115 duration-500 ease-out">
-                  HTML
-                </div>
-              </div>
-              <div className="text-md">
-                A single-page, responsive pet store built with React and
-                Tailwind CSS. Tailwind CSS ensures fast, customizable design,
-                while React handles dynamic state management. This project
-                demonstrates my ability to integrate modern web technologies and
-                create a user-friendly interface. take a look to know more
-              </div>
-              <div className="flex justify-between">
-                <Link href={"https://github.com/RasheedBShaik/monito"} target="_blank" className="text-xl p-3 bg-[#d1d5db80] text-black font-bold rounded-xl hover:text-white hover:bg-black">
-                  Source Code
-                </Link>
-                <Link href={"https://rasheedbshaik.github.io/monito"} target="_blank" className="text-xl p-3 bg-[#00000050] text-white font-bold rounded-xl hover:bg-white hover:text-black ">
-                  View Live
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        {/*  cards end */}
-      </div>
-    </div>
+          {/* SEE ALL PROJECTS BUTTON */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 flex justify-center"
+          >
+            <Link href="/projects" className="group relative flex items-center gap-6 px-10 py-6 rounded-full bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] overflow-hidden transition-all hover:pr-14">
+              <span className="relative z-10">Initialize Full Archive</span>
+              <ArrowRight size={18} className="relative z-10 group-hover:translate-x-2 transition-transform" />
+              {/* Button Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-fuchsia-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-white group-hover:opacity-0 transition-opacity" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    </ConfigProvider>
   );
-};
+}
+
+function ProjectRow({ project, index }: { project: any; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="group relative flex flex-col md:flex-row md:items-center justify-between py-12 border-b border-white/5 transition-all cursor-pointer"
+    >
+      {/* Animated Hover Background */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            layoutId="hoverGlow"
+            className="absolute inset-0 bg-gradient-to-r from-blue-500/[0.03] via-transparent to-transparent z-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-8 md:gap-16 flex-grow">
+        {/* Project ID & Dynamic Icon */}
+        <div className="flex items-center gap-6 min-w-[100px]">
+          <span className="text-slate-800 font-black text-sm tabular-nums group-hover:text-blue-500/50 transition-colors">0{index + 1}</span>
+          <div className="p-3 rounded-2xl bg-white/5 text-slate-500 group-hover:text-blue-400 group-hover:bg-blue-500/10 transition-all duration-500 group-hover:rotate-[360deg]">
+            {project.icon}
+          </div>
+        </div>
+
+        {/* Info Container */}
+        <div className="space-y-2">
+          <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter group-hover:italic transition-all">
+            {project.title}
+          </h3>
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            {project.stack.map((s: string) => (
+              <span key={s} className="text-[9px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1">
+                <div className="h-1 w-1 bg-blue-500 rounded-full" /> {s}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Action Suite */}
+      <div className="relative z-10 flex items-center gap-4 mt-8 md:mt-0">
+        {project.creds && (
+          <Tooltip title={project.creds} color="#3b82f6" placement="top">
+            <div className="p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 text-blue-400 cursor-help hover:bg-blue-500/20 transition-colors">
+              <ShieldCheck size={20} />
+            </div>
+          </Tooltip>
+        )}
+        
+        <div className="flex gap-2">
+          <a href={project.github} target="_blank" className="p-4 rounded-2xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-white/40 transition-all">
+            <Github size={20} />
+          </a>
+          <a href={project.live} target="_blank" className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-xl shadow-blue-500/10">
+            Live <ExternalLink size={14} />
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
