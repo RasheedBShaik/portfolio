@@ -1,21 +1,26 @@
-import { Hero } from "./Sections/Hero";
-import { Aboutme } from "./Sections/Aboutme";
-import { Skills } from "./Sections/Skills";
+import AboutMe from "./Sections/Aboutme";
+import InteractiveBackground from "./Sections/Animation";
 import { Contact } from "./Sections/Contact";
-import { Projects } from "./Sections/Projects";
+import { Footer } from "./Sections/Footer";
+import Hero from "./Sections/Hero";
+import Navbar from "./Sections/Navbar";
+import Projects from "./Sections/Projects";
 
-export default function Home() {
+import Skills from "./Sections/Skills";
+
+export default function HomePage() {
   return (
-    <div>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap"
-        rel="stylesheet"
-      />
-      <Hero />
-      <Aboutme />
-      <Skills />
-      <Projects />
-      <Contact />
-    </div>
+    <>
+    <InteractiveBackground/>
+      <main className="relative z-10 flex flex-col items-center justify-start min-h-screen bg-transparent">
+        <Navbar />
+        <Hero />
+        <AboutMe />
+        <Skills />
+        <Projects />
+        <Contact />
+        <Footer/>
+      </main>
+    </>
   );
 }
