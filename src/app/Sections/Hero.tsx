@@ -11,7 +11,7 @@ import {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden  selection:bg-purple-500/30 font-syne flex flex-col justify-center">
+    <section className="relative min-h-screen w-full overflow-hidden  selection:bg-purple-500/30 font-syne flex flex-col justify-center" id="top">
       {/* 3. Content Layer */}
       <div className="relative z-20 flex flex-col items-center px-6 py-12 md:py-20 text-center">
         {/* Main Headline */}
@@ -125,7 +125,7 @@ export default function Hero() {
 
             {/* Email - Cyber Cyan/Blue Glow */}
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:rasheed.sk7337@gmail.com"
               className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
               title="Send Email"
             >

@@ -4,7 +4,7 @@ export const Footer = () => {
   return (
     <footer className="flex flex-col gap-12 text-[var(--text)] bg-[var(--bg)]">
       <div className="flex justify-center">
-        <Link href="#top" scroll={true}>
+        <a href="/#top">
           <div className="flex flex-col gap-3 group cursor-pointer">
             <div className="flex justify-center">
               {/* Inline SVG Replacement */}
@@ -27,11 +27,11 @@ export const Footer = () => {
               BACK TO TOP
             </div>
           </div>
-        </Link>
+        </a>
       </div>
 
       <div className="text-center text-lg md:text-2xl pb-20 opacity-50">
-        © {new Date().getFullYear()} @Rasheed Basha All Rights Reserved.
+        © 2024 @Rasheed Basha All Rights Reserved.
       </div>
     </footer>
   );
