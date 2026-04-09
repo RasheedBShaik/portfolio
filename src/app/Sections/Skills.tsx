@@ -48,7 +48,7 @@ export default function Skills() {
             </div>
             <h3 className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.3em] mb-4">01. Core Stack</h3>
             <h4 className="text-4xl font-bold text-white mb-6 uppercase tracking-tighter leading-none">
-              React & <br/><span className="text-slate-500 italic">Next.js 15</span>
+              React & <span className="text-slate-500 ">Next.js</span>
             </h4>
             <p className="text-slate-400 text-lg leading-relaxed mb-8 max-w-md">
               Specializing in <span className="text-white">Server Components</span>, edge runtime optimization, and high-concurrency state management.
@@ -84,9 +84,9 @@ export default function Skills() {
           <BentoCard className="md:col-span-4" spotlightColor="rgba(16, 185, 129, 0.15)">
             <Terminal className="text-emerald-500 mb-6" size={24} />
             <h3 className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.3em] mb-2">03. Environment</h3>
-            <h4 className="text-xl font-bold text-white uppercase tracking-tighter mb-8 italic">Tooling HUD</h4>
+            <h4 className="text-xl font-bold text-white uppercase tracking-tighter mb-8 ">Tooling HUD</h4>
             <div className="grid grid-cols-2 gap-4">
-              {[{n: "Vercel", s:"Cloud"}, {n: "Docker", s:"DevOps"}, {n: "Git", s:"Core"}, {n: "Postman", s:"APIs"}].map((t) => (
+              {[{n: "Vercel", s:"Cloud"}, {n: "node", s:"Backend"}, {n: "Git", s:"Core"}, {n: "Postman", s:"APIs"}].map((t) => (
                 <div key={t.n} className="group/tool transition-transform hover:translate-x-1">
                    <div className="text-[11px] font-black text-white uppercase tracking-tighter flex items-center gap-2">
                     <span className="h-1 w-1 bg-emerald-500 rounded-full" /> {t.n}
@@ -105,7 +105,7 @@ export default function Skills() {
                 <h3 className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.3em] mb-2">04. UI Engineering</h3>
                 <h4 className="text-2xl font-bold text-white uppercase tracking-tighter mb-4">Design Systems</h4>
                 <p className="text-slate-400 text-sm leading-relaxed">
-                  Building scalable <span className="text-white">component libraries</span> with Radix UI, Headless UI, and Storybook.
+                  Building scalable <span className="text-white">component libraries</span> with Shadcn UI, Ant Design UI, and Material UI.
                 </p>
               </div>
               <div className="relative flex items-end gap-3 h-32 pr-4">

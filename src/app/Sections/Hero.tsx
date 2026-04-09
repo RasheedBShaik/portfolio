@@ -11,9 +11,12 @@ import {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden  selection:bg-purple-500/30 font-syne flex flex-col justify-center" id="top">
+    <section
+      className="relative min-h-screen w-full overflow-hidden  selection:bg-purple-500/30 font-syne flex flex-col justify-center"
+      id="top"
+    >
       {/* 3. Content Layer */}
-      <div className="relative z-20 flex flex-col items-center px-6 py-12 md:py-20 text-center">
+      <div className="relative z-20 flex flex-col items-center px-6 py-12 md:py-24 text-center">
         {/* Main Headline */}
         <div className="relative mb-4 md:mb-6">
           <h1 className="max-w-6xl text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] font-extrabold tracking-tighter text-white leading-[0.9] md:leading-[0.8] drop-shadow-2xl">
@@ -37,18 +40,19 @@ export default function Hero() {
           >
             {/* 🔥 subtle overlay to kill background noise */}
             <div className="absolute inset-0 rounded-[inherit] bg-black/30 backdrop-blur-xl pointer-events-none" />
-
             <p
               className="relative z-10 text-base sm:text-lg md:text-2xl leading-relaxed
     text-slate-100 font-light tracking-wide"
             >
-              Engineering{" "}
-              <span className="text-white font-semibold">high-performance</span>{" "}
-              interfaces where{" "}
-              <span className="text-blue-300 font-semibold">modern logic</span>{" "}
-              meets{" "}
+              I build{" "}
+              <span className="text-white font-semibold">
+                fast, beautiful web apps
+              </span>{" "}
+              by combining{" "}
+              <span className="text-blue-300 font-semibold">clean code</span>{" "}
+              with{" "}
               <span className="text-purple-300 font-semibold">
-                aesthetic precision.
+                pixel-perfect design.
               </span>
             </p>
 
@@ -137,7 +141,7 @@ export default function Hero() {
               href="/resume/Shaik_Rasheed_Basha.pdf"
               target="_blank"
               className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-purple-400 hover:bg-purple-400/10 hover:border-purple-400/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
-              title="Download Resume"
+              title="Open Resume"
             >
               <FileText size={20} />
             </a>

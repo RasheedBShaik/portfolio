@@ -1,16 +1,16 @@
 import React from "react";
 import { 
-  Globe, 
-  Layers, 
-  Terminal, 
-  Code2, 
-  Cpu, 
-  Layout, 
-  ShoppingBag, 
-  PawPrint,
-  Box
+  Building2,     // For IT/Product companies
+  Hammer,        // For Maintenance/Service companies
+  ShoppingCart,  // For E-commerce
+  Layers,        // For SaaS/Corporate UI
+  Truck,         // For Delivery/Food Tech
+  GraduationCap, // For Ed-Tech
+  BookOpen,      // For Marketplace/Books
+  Database,      // For Inventory/Systems
+  Component,     // For UI Libraries
+  Dog,           // For Pet Stores
 } from "lucide-react";
-
 export interface Project {
   title: string;
   description: string;
@@ -25,14 +25,32 @@ export interface Project {
 
 export const projectData: Project[] = [
   {
+    title: "Anarav Technologies",
+    category: "IT Company",
+    description: "Anarav Tech is one of the product based company that built high performance softwares, websites and apps globally.",
+    icon: <Building2 size={20} />,
+    stack: ["Next.js", "Three.js", "Tailwind","Motion Framer"],
+    github: "",
+    live: "https://anaravtech.com/",
+  },
+  {
     title: "Furniro Shop",
     category: "E-Commerce",
     description: "Premium furniture retail platform with optimized state management and a seamless checkout experience.",
-    icon: <Globe size={20} />,
+    icon: <ShoppingCart size={20} />,
     stack: ["Next.js", "Node.js", "Redux", "Tailwind"],
     github: "https://github.com/RasheedBShaik/furniture-shop",
     live: "https://furniro-furniture-shop.vercel.app/",
     creds: "Admin: admin | Pass: password",
+  },
+  {
+    title: "Bharath Home Services",
+    category: "Service Company",
+    description: "Provide Premium Home Maintenance with many services",
+    icon: <Hammer size={20} />,
+    stack: ["Next.js", "React.js", "Next Routing" ,"Tailwind"],
+    github: "",
+    live: "https://bharath-home-services.vercel.app/",
   },
   {
     title: "Saasforce UI",
@@ -47,7 +65,7 @@ export const projectData: Project[] = [
     title: "Chotu Clone",
     category: "Food Tech",
     description: "A comprehensive clone of the Chotu delivery platform featuring modern grid layouts and responsive design.",
-    icon: <Layout size={20} />,
+    icon: <Truck size={20} />,
     stack: ["Next.js", "Tailwind CSS", "Lucide React"],
     github: "https://github.com/RasheedBShaik/chotu-clone",
     live: "https://chotu-beta.vercel.app",
@@ -56,7 +74,7 @@ export const projectData: Project[] = [
     title: "Nxtwave Clone",
     category: "Ed-Tech",
     description: "Educational platform interface featuring complex navigation and interactive student dashboard elements.",
-    icon: <Cpu size={20} />,
+    icon: <GraduationCap size={20} />,
     stack: ["React", "Custom CSS", "React Router"],
     github: "https://github.com/RasheedBShaik/nxtwave-clone",
     live: "https://nxtwave-clone-vercel.vercel.app",
@@ -65,7 +83,7 @@ export const projectData: Project[] = [
     title: "Bazar Book",
     category: "Marketplace",
     description: "Real-time bookstore marketplace utilizing cloud database synchronization for inventory management.",
-    icon: <Code2 size={20} />,
+    icon: <BookOpen size={20} />,
     stack: ["React", "Firebase", "Ant Design"],
     github: "https://github.com/rasheedbshaik/bazar",
     live: "https://rasheedbshaik.github.io/bazar",
@@ -75,9 +93,9 @@ export const projectData: Project[] = [
     title: "Product Store",
     category: "Inventory",
     description: "Full-stack inventory system with separate high-performance Client and Admin architectures.",
-    icon: <Terminal size={20} />,
+    icon: <Database size={20} />,
     stack: ["MERN Stack", "Express", "MongoDB"],
-    github: "", // Empty as per request
+    github: "", 
     live: "https://u-product-store-zgez.onrender.com",
     creds: "Dual Repo System (Admin & Client)",
     isPrivate: true,
@@ -86,8 +104,8 @@ export const projectData: Project[] = [
     title: "E-commerce-ui",
     category: "UI Library",
     description: "A collection of reusable, high-performance e-commerce components built for speed and accessibility.",
-    icon: <ShoppingBag size={20} />,
-    stack: ["HTML", "Tailwind CSS", "JavaScript"],
+    icon: <Component size={20} />,
+    stack: ["HTML", "Plain CSS", "JavaScript"],
     github: "https://github.com/RasheedBShaik/e-commerce-ui",
     live: "https://rasheedbshaik.github.io/e-commerce-ui",
   },
@@ -95,7 +113,7 @@ export const projectData: Project[] = [
     title: "Monito Pet Store",
     category: "Retail",
     description: "Modern pet adoption and supply interface focusing on clean typography and aesthetic product displays.",
-    icon: <PawPrint size={20} />,
+    icon: <Dog size={20} />,
     stack: ["React", "CSS Modules", "Vite"],
     github: "https://github.com/RasheedBShaik/monito",
     live: "https://rasheedbshaik.github.io/monito",

@@ -69,7 +69,7 @@ export default function AboutMe() {
                 </span>{" "}
                 obsessed with the friction-point between design and engineering.
                 I build high-performance web apps with{" "}
-                <span className="text-blue-400 font-medium italic underline underline-offset-4 decoration-blue-500/30">
+                <span className="text-blue-400 font-medium group-hover:italic transition-all duration-300 underline underline-offset-4 decoration-blue-500/30">
                   React, Next.js, and TypeScript.
                 </span>
               </p>
@@ -110,7 +110,7 @@ export default function AboutMe() {
               {[
                 {
                   label: "Core",
-                  val: "Next.js / React 19",
+                  val: "Next.js / React",
                   color: "from-blue-500 to-cyan-400",
                 },
                 {
@@ -120,7 +120,7 @@ export default function AboutMe() {
                 },
                 {
                   label: "Backend",
-                  val: "Node / PostgreSQL",
+                  val: "Node",
                   color: "from-emerald-500 to-teal-400",
                 },
                 {
@@ -150,7 +150,7 @@ export default function AboutMe() {
               ))}
             </div>
             <Link href={"https://github.com/RasheedBShaik"}>
-              <button className="mt-10 w-full group/btn flex items-center justify-center gap-2 rounded-2xl bg-white text-black py-4 font-bold text-sm transition-all hover:bg-blue-400">
+              <button className="mt-10 w-full group/btn flex items-center cursor-pointer justify-center gap-2 rounded-2xl bg-white text-black py-4 font-bold text-sm transition-all hover:bg-blue-400">
                 View Github
                 <MoveRight
                   size={16}
