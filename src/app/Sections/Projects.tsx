@@ -97,7 +97,7 @@ function ProjectRow({ project, index }: { project: any; index: number }) {
       <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-8 md:gap-16 flex-grow">
         {/* Project ID & Dynamic Icon */}
         <div className="flex items-center gap-6 min-w-[100px]">
-          <span className="text-slate-800 font-black text-sm tabular-nums group-hover:text-blue-500/50 transition-colors">0{index + 1}</span>
+          <span className="text-blue-500 font-black text-sm tabular-nums group-hover:text-blue-600 transition-colors">0{index + 1}</span>
           <div className="p-3 rounded-2xl bg-white/5 text-slate-500 group-hover:text-blue-400 group-hover:bg-blue-500/10 transition-all duration-500 group-hover:rotate-[360deg]">
             {project.icon}
           </div>
