@@ -8,6 +8,8 @@ import {
   GraduationCap, // For Ed-Tech
   BookOpen,      // For Marketplace/Books
   Database,      // For Inventory/Systems
+  Users,
+  FileText,     
   Component,     // For UI Libraries
   Dog,           // For Pet Stores
 } from "lucide-react";
@@ -34,6 +36,33 @@ export const projectData: Project[] = [
     live: "https://anaravtech.com/",
   },
   {
+    title: "Simvora Official website",
+    category: "Corporate",
+    description: "Enterprise SaaS landing page focusing on cinematic GSAP animations and high-conversion UI patterns.",
+    icon: <Layers size={20} />,
+    stack: ["Next.js", "TypeScript", "GSAP", "Motion Framer"],
+    github: "",
+    live: "https://www.simvoratechnologies.com/",
+  },
+  {
+    title: "User Management System",
+    category: "Dashboard",
+    description: "User Management System with both user and admin pannel to check and update all details required to a company.",  
+    icon: <Users size={20} />,
+    stack: ["Next.js", "Node.js", "Redux", "MongoDB"],
+    github: "https://github.com/RasheedBShaik/user-management-system",
+    live: "https://user-management-system-five-alpha.vercel.app",
+    creds: "E-mail(Admin): admin@test.com | Pass: 123456 && E-mail(user): test@gmail.com | Pass: test  ",
+  },{
+    title: "Mini Notes App",
+    category: "Notes",
+    description: "Update the daily notes, implemented all CRUD features with MongoDB ",
+    icon: <FileText size={20} />,
+    stack: ["Next.js", "Node.js", "MongoDB", "Render"],
+    github: "https://github.com/RasheedBShaik/mini-notes-app",
+    live: "https://mini-notes-app-rose.vercel.app/",
+  },
+  {
     title: "Furniro Shop",
     category: "E-Commerce",
     description: "Premium furniture retail platform with optimized state management and a seamless checkout experience.",
@@ -44,22 +73,22 @@ export const projectData: Project[] = [
     creds: "Admin: admin | Pass: password",
   },
   {
+    title: "Pernati Naturals",
+    category: "E-commerce",
+    description: "Provide Premium Dairy and Organic Items",
+    icon: <Hammer size={20} />,
+    stack: ["Next.js", "React.js", "Next Routing" ,"Tailwind"],
+    github: "https://github.com/rasheedbshaik/pernati-naturals",
+    live: "https://pernati-naturals.vercel.app/",
+  },
+  {
     title: "Bharath Home Services",
     category: "Service Company",
     description: "Provide Premium Home Maintenance with many services",
     icon: <Hammer size={20} />,
     stack: ["Next.js", "React.js", "Next Routing" ,"Tailwind"],
-    github: "",
+    github: "https://github.com/RasheedBShaik/bharath-home-services",
     live: "https://bharath-home-services.vercel.app/",
-  },
-  {
-    title: "Saasforce UI",
-    category: "Corporate",
-    description: "Enterprise SaaS landing page focusing on cinematic GSAP animations and high-conversion UI patterns.",
-    icon: <Layers size={20} />,
-    stack: ["Next.js", "TypeScript", "GSAP", "Framer"],
-    github: "https://github.com/RasheedBShaik/saasforce",
-    live: "https://saas-force-eight.vercel.app/",
   },
   {
     title: "Chotu Clone",

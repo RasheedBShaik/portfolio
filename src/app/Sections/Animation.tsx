@@ -12,18 +12,18 @@ const HyperInteractiveBackground = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
     
     const config = {
-      count: isMobile ? 800 : 1800, // Higher density for premium feel
+      count: isMobile ? 800 : 1800,
       particleSize: isMobile ? 3.5 : 2.5,
       radius: isMobile ? 30 : 45, // Interaction reach
       pixelRatio: Math.min(window.devicePixelRatio, 2),
     };
 
+    // Buffer arrays
     const positionBuffer = new Float32Array(config.count * 3);
     const initialPositions = new Float32Array(config.count * 3);
     const velocities = new Float32Array(config.count * 3);
     const randomFactors = new Float32Array(config.count);
     
-    // Vibrant Neon Palette
     const palette = [
       new THREE.Color('#4f46e5'), // Indigo
       new THREE.Color('#06b6d4'), // Cyan
@@ -33,7 +33,6 @@ const HyperInteractiveBackground = () => {
 
     for (let i = 0; i < config.count; i++) {
       const i3 = i * 3;
-      // Start slightly clustered for the "explosion" entry
       const x = (Math.random() - 0.5) * 140;
       const y = (Math.random() - 0.5) * 90;
       const z = (Math.random() - 0.5) * 30;
@@ -96,20 +95,19 @@ const HyperInteractiveBackground = () => {
     const particles = new THREE.Points(geo, mat);
     scene.add(particles);
 
-    // --- High-Impact Entry Animation ---
-    camera.position.z = 400; // Deep space start
-    
+    // --- Entry Animation ---
+    camera.position.z = 400;
     const entryTl = gsap.timeline();
     entryTl.to(camera.position, {
       z: 75,
-      duration: 1.2,
+      duration: 1.5,
       ease: "expo.inOut",
     })
     .to(mat, {
       opacity: 0.85,
-      duration: 0.8,
-      ease: "power3.out"
-    }, 0.2);
+      duration: 1,
+      ease: "power2.out"
+    }, 0.5);
 
     // --- Interaction State ---
     const mouse = { x: 0, y: 0, vX: 0, vY: 0, lastX: 0, lastY: 0 };
@@ -135,7 +133,7 @@ const HyperInteractiveBackground = () => {
     // --- Animation Loop ---
     const update = (time: number) => {
       const t = time * 0.001;
-      lerpTarget.lerp(new THREE.Vector2(mouse.x, mouse.y), 0.12);
+      lerpTarget.lerp(new THREE.Vector2(mouse.x, mouse.y), 0.1);
 
       const posAttr = geo.attributes.position;
       const positions = posAttr.array as Float32Array;
@@ -144,49 +142,59 @@ const HyperInteractiveBackground = () => {
         const i3 = i * 3;
         const rf = randomFactors[i];
 
-        // Organic Floating Motion
-        initialPositions[i3] += Math.sin(t * rf) * 0.02;
-        initialPositions[i3+1] += Math.cos(t * rf) * 0.02;
+        // 1. Organic Bobbing (Stable sine/cosine oscillation)
+        const floatX = Math.sin(t * rf * 1.5) * 1.5; 
+        const floatY = Math.cos(t * rf * 1.5) * 1.5;
 
-        const ix = initialPositions[i3];
-        const iy = initialPositions[i3 + 1];
-        const iz = initialPositions[i3 + 2];
+        // Origin points (Stay constant)
+        const ox = initialPositions[i3];
+        const oy = initialPositions[i3 + 1];
+        const oz = initialPositions[i3 + 2];
 
-        const dx = lerpTarget.x - ix;
-        const dy = lerpTarget.y - iy;
+        // Current Animated Anchor
+        const ax = ox + floatX;
+        const ay = oy + floatY;
+
+        // 2. Mouse Interaction
+        const dx = lerpTarget.x - ax;
+        const dy = lerpTarget.y - ay;
         const distSq = dx * dx + dy * dy;
         const dist = Math.sqrt(distSq);
 
         if (dist < config.radius) {
-          const force = (1 - dist / config.radius) * 2.0;
-          // Apply velocity based on mouse movement speed (momentum)
-          velocities[i3] += mouse.vX * force * 0.3;
-          velocities[i3 + 1] += mouse.vY * force * 0.3;
-          // Warp depth
-          positions[i3 + 2] = iz + (force * 25);
+          const force = (1 - dist / config.radius) * 1.5;
+          // Apply velocity (momentum) based on mouse speed
+          velocities[i3] += mouse.vX * force * 0.4;
+          velocities[i3 + 1] += mouse.vY * force * 0.4;
+          // Z-Warping depth
+          positions[i3 + 2] = oz + (force * 30);
         }
 
-        // Friction/Damping
-        velocities[i3] *= 0.94;
-        velocities[i3 + 1] *= 0.94;
+        // 3. Physics Processing
+        // Friction / Damping
+        velocities[i3] *= 0.92;
+        velocities[i3 + 1] *= 0.92;
 
-        positions[i3] = ix + velocities[i3];
-        positions[i3 + 1] = iy + velocities[i3 + 1];
-        positions[i3 + 2] += (iz - positions[i3 + 2]) * 0.06;
+        // Update Position: Anchor + Inertia
+        positions[i3] = ax + velocities[i3];
+        positions[i3 + 1] = ay + velocities[i3 + 1];
+        
+        // Smooth return for Z depth
+        positions[i3 + 2] += (oz - positions[i3 + 2]) * 0.05;
       }
 
       posAttr.needsUpdate = true;
       
       // Camera Parallax
-      camera.position.x += (lerpTarget.x * 0.2 - camera.position.x) * 0.05;
-      camera.position.y += (lerpTarget.y * 0.2 - camera.position.y) * 0.05;
+      camera.position.x += (lerpTarget.x * 0.15 - camera.position.x) * 0.05;
+      camera.position.y += (lerpTarget.y * 0.15 - camera.position.y) * 0.05;
       camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
       
-      // Decay velocity so particles don't fly away forever if mouse stops
-      mouse.vX *= 0.9;
-      mouse.vY *= 0.9;
+      // Decay mouse velocity
+      mouse.vX *= 0.8;
+      mouse.vY *= 0.8;
     };
 
     gsap.ticker.add(update);
@@ -213,9 +221,8 @@ const HyperInteractiveBackground = () => {
   return (
     <div className="fixed inset-0 -z-50 bg-[#03020b] pointer-events-none overflow-hidden">
       <div ref={mountRef} className="w-full h-full" />
-      {/* Enhanced radial vignette for depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(10,5,30,0)_0%,#03020b_90%)]" />
-      <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(10,5,30,0)_0%,#03020b_95%)]" />
+      <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
     </div>
   );
 };

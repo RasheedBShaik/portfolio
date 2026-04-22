@@ -34,7 +34,7 @@ export default function Skills() {
             Technical Architecture
           </div>
           <h2 className="text-5xl font-extrabold tracking-tight text-white md:text-7xl uppercase">
-            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-500">Arsenal</span>
+            Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-500">STACK</span>
           </h2>
         </motion.div>
 

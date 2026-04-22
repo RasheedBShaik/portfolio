@@ -94,9 +94,7 @@ export const Contact = () => {
                 </div>
                 <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-[0.85]">
                   Let's Build <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-fuchsia-500 font-light">
-                    Something Epic
-                  </span>
+                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-500">Something Epic</span>
                 </h2>
                 <p className="text-slate-400 text-lg max-w-md leading-relaxed">
                   Have a vision that needs a technical architect? Flip the card

@@ -32,7 +32,7 @@ export default function Projects() {
                 Featured Deployments
               </div>
               <Title level={1} className="!text-white !m-0 !text-6xl md:!text-8xl !font-black uppercase tracking-tighter leading-none">
-                Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-light">Works</span>
+                Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-500">works</span>
               </Title>
             </motion.div>
 
@@ -49,14 +49,14 @@ export default function Projects() {
           </div>
 
           {/* SEE ALL PROJECTS BUTTON */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mt-16 flex justify-center"
           >
             <Link href="/projects" className="group relative flex items-center gap-6 px-10 py-6 rounded-full bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] overflow-hidden transition-all hover:pr-14">
-              <span className="relative z-10">Initialize Full Archive</span>
+              <span className="relative z-10">Visit MY ALL works</span>
               <ArrowRight size={18} className="relative z-10 group-hover:translate-x-2 transition-transform" />
               {/* Button Hover Glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-fuchsia-600 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -117,7 +117,6 @@ function ProjectRow({ project, index }: { project: any; index: number }) {
           </div>
         </div>
       </div>
-
       {/* Action Suite */}
       <div className="relative z-10 flex items-center gap-4 mt-8 md:mt-0">
         {project.creds && (
@@ -127,12 +126,32 @@ function ProjectRow({ project, index }: { project: any; index: number }) {
             </div>
           </Tooltip>
         )}
-        
+
         <div className="flex gap-2">
-          <a href={project.github} target="_blank" className="p-4 rounded-2xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-white/40 transition-all">
-            <Github size={20} />
-          </a>
-          <a href={project.live} target="_blank" className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-xl shadow-blue-500/10">
+          {/* Conditional GitHub or Protected Icon */}
+          {project.github ? (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-2xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-white/40 transition-all"
+            >
+              <Github size={20} />
+            </a>
+          ) : (
+            <Tooltip title="Source Code Protected" color="#ef4444">
+              <div className="p-4 rounded-2xl bg-white/5 border border-red-500/20 text-red-400/60 cursor-not-allowed">
+                <ShieldCheck size={20} />
+              </div>
+            </Tooltip>
+          )}
+
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-xl shadow-blue-500/10"
+          >
             Live <ExternalLink size={14} />
           </a>
         </div>

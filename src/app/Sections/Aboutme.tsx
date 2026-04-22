@@ -29,7 +29,7 @@ export default function AboutMe() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 flex flex-col items-start gap-4"
+          className="mb-16 flex flex-col items-start gap-4 uppercase"
         >
           <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-blue-400 backdrop-blur-md">
             <Sparkles size={14} className="animate-spin-slow" />

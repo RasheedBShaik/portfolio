@@ -32,7 +32,7 @@ export default function ArchivePage() {
     <ConfigProvider theme={{ token: { colorPrimary: "#3b82f6" } }}>
       <main className="min-h-screen bg-[#050505] text-white font-syne py-8 md:py-20 px-4 md:px-6 selection:bg-blue-500/30">
         <div className="max-w-6xl mx-auto">
-          
+
           {/* Header Section */}
           <header className="flex flex-col gap-6 mb-12 md:mb-16">
             <Link
@@ -140,7 +140,7 @@ export default function ArchivePage() {
                     </p>
 
                     {project.creds && (
-                      <div className="flex items-center gap-2 text-[9px] font-bold text-blue-500 uppercase tracking-widest bg-blue-500/5 w-fit px-2 py-1.5 rounded-md border border-blue-500/10">
+                      <div className="flex items-center gap-2 text-[9px] font-bold text-blue-500 tracking-widest bg-blue-500/5 w-fit px-2 py-1.5 rounded-md border border-blue-500/10">
                         <ShieldCheck size={11} /> {project.creds}
                       </div>
                     )}
@@ -159,8 +159,9 @@ export default function ArchivePage() {
                   </div>
 
                   {/* Links - Larger touch targets for mobile */}
+                  {/* Links - Larger touch targets for mobile */}
                   <div className="col-span-12 md:col-span-3 flex justify-start md:justify-end gap-3">
-                    {project.github && (
+                    {project.github ? (
                       <a
                         href={project.github}
                         target="_blank"
@@ -170,7 +171,16 @@ export default function ArchivePage() {
                       >
                         <Github size={20} className="md:w-4 md:h-4" />
                       </a>
+                    ) : (
+                      /* Protected State - Shown when GitHub link is missing */
+                      <div
+                        className="p-4 md:p-3 rounded-xl bg-white/[0.02] border border-red-500/10 text-red-500/40 cursor-not-allowed flex-1 md:flex-none flex justify-center items-center"
+                        title="Source Code Protected"
+                      >
+                        <ShieldCheck size={20} className="md:w-4 md:h-4" />
+                      </div>
                     )}
+
                     <a
                       href={project.live}
                       target="_blank"
