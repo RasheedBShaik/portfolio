@@ -137,7 +137,7 @@ export default function Hero() {
 
             {/* Resume - Purple/Vortex Glow */}
             <a
-              href="/resume/rasheed-Basha.pdf"
+              href="/resume/rasheed-basha.pdf"
               target="_blank"
               className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-purple-400 hover:bg-purple-400/10 hover:border-purple-400/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
               title="Open Resume"
