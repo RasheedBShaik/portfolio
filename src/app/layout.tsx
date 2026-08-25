@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { Analytics } from "@vercel/analytics/next";
 import InteractiveBackground from "./Sections/Animation";
-// Next.js bundles this side-effect CSS import; TypeScript has no module declarations for CSS files.
+
+// Next.js bundles this side-effect CSS import.
 // @ts-expect-error -- handled by Next.js
 import "./globals.css";
 
@@ -31,6 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" className="scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -45,21 +48,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
       <body className="overflow-x-hidden bg-[#020204] text-white antialiased selection:bg-purple-500/30">
         <AntdRegistry>
-          {/* ================================================= */}
           {/* GLOBAL INTERACTIVE BACKGROUND */}
-          {/* ================================================= */}
-
           <div className="pointer-events-none fixed inset-0 z-0">
             <InteractiveBackground />
           </div>
 
-          {/* ================================================= */}
           {/* PAGE CONTENT */}
-          {/* ================================================= */}
-
           <div className="relative z-10 min-h-screen">
             {children}
           </div>
+
+          {/* VERCEL ANALYTICS */}
+          <Analytics />
         </AntdRegistry>
       </body>
     </html>
