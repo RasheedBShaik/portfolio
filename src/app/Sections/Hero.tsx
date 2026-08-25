@@ -1,27 +1,20 @@
 "use client";
-// Added FileText and Mail to the imports
-import {
-  Github,
-  Linkedin,
-  ArrowRight,
-  Sparkles,
-  FileText,
-  Mail,
-} from "lucide-react";
+
+import { Github, Linkedin, ArrowRight, FileText, Mail } from "lucide-react";
 
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen w-full overflow-hidden  selection:bg-purple-500/30 font-syne flex flex-col justify-center"
+      className="relative min-h-screen w-full overflow-hidden selection:bg-purple-500/30 font-syne flex flex-col justify-center"
       id="top"
     >
-      {/* 3. Content Layer */}
+      {/* Content Layer */}
       <div className="relative z-20 flex flex-col items-center px-6 py-12 md:py-24 text-center">
         {/* Main Headline */}
         <div className="relative mb-4 md:mb-6">
           <h1 className="max-w-6xl text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] font-extrabold tracking-tighter text-white leading-[0.9] md:leading-[0.8] drop-shadow-2xl">
             I&apos;m{" "}
-            <span className="bg-gradient-to-b from-white via-white/90 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 via-purple-400 to-fuchsia-500 bg-clip-text text-transparent">
               Rasheed
             </span>
           </h1>
@@ -30,7 +23,7 @@ export default function Hero() {
         {/* Bio Section */}
         <div className="mt-4 md:mt-8 max-w-2xl w-full group">
           <div
-            className="relative rounded-[1.5rem] md:rounded-[2.5rem]
+            className="relative rounded-3xl md:rounded-[2.5rem]
   border border-white/10
   p-6 md:p-10
   backdrop-blur-xl
@@ -38,30 +31,37 @@ export default function Hero() {
   transition-all duration-300
   hover:border-blue-400/40"
           >
-            {/* 🔥 subtle overlay to kill background noise */}
+            {/* subtle overlay to kill background noise */}
             <div className="absolute inset-0 rounded-[inherit] bg-black/30 backdrop-blur-xl pointer-events-none" />
+
             <p
               className="relative z-10 text-base sm:text-lg md:text-2xl leading-relaxed
     text-slate-100 font-light tracking-wide"
             >
               I build{" "}
               <span className="text-white font-semibold">
-                fast, beautiful web apps
+                fast, scalable software
               </span>{" "}
-              by combining{" "}
-              <span className="text-blue-300 font-semibold">clean code</span>{" "}
               with{" "}
+              <span className="text-blue-300 font-semibold">clean code</span>{" "}
+              and{" "}
               <span className="text-purple-300 font-semibold">
-                pixel-perfect design.
+                thoughtful design.
               </span>
             </p>
 
             <div className="relative z-10 mt-6 md:mt-8 flex flex-wrap justify-center gap-2 md:gap-3">
-              {["React", "Next.js", "TypeScript", "Tailwind", "Three.js"].map(
-                (tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 md:px-4 py-1 md:py-1.5
+              {[
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Python",
+                "Node.js",
+                "Tailwind",
+              ].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 md:px-4 py-1 md:py-1.5
           rounded-lg md:rounded-xl
           bg-black/40
           border border-white/10
@@ -72,11 +72,10 @@ export default function Hero() {
           hover:text-white
           hover:border-blue-400/50
           hover:bg-blue-500/20"
-                  >
-                    {tech}
-                  </span>
-                ),
-              )}
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -100,7 +99,7 @@ export default function Hero() {
             </div>
 
             {/* Background Slide Effect */}
-            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-blue-600 via-purple-500 to-blue-400 transition-transform duration-500 ease-out group-hover:translate-x-0" />
+            <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-blue-600 via-purple-500 to-blue-400 transition-transform duration-500 ease-out group-hover:translate-x-0" />
           </a>
 
           {/* Social & Contact Cluster */}
@@ -138,7 +137,7 @@ export default function Hero() {
 
             {/* Resume - Purple/Vortex Glow */}
             <a
-              href="/resume/Shaik_Rasheed_Basha.pdf"
+              href="/resume/rasheed-Basha.pdf"
               target="_blank"
               className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-purple-400 hover:bg-purple-400/10 hover:border-purple-400/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
               title="Open Resume"

@@ -1,16 +1,17 @@
 "use client";
-import React, { useState, useMemo } from "react";
+
+import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfigProvider } from "antd";
 import {
   ArrowLeft,
+  ArrowUpRight,
   Github,
-  ExternalLink,
   Search,
-  Terminal,
   ShieldCheck,
-  Command,
   X,
+  FolderOpen,
+  ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
 import { projectData } from "../../../projectsData";
@@ -19,165 +20,633 @@ export default function ArchivePage() {
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
-    const s = query.toLowerCase();
+    const search = query.trim().toLowerCase();
+
+    if (!search) return projectData;
+
     return projectData.filter(
-      (p) =>
-        p.title.toLowerCase().includes(s) ||
-        p.stack.some((tech) => tech.toLowerCase().includes(s)) ||
-        p.category.toLowerCase().includes(s),
+      (project) =>
+        project.title.toLowerCase().includes(search) ||
+        project.stack.some((tech) => tech.toLowerCase().includes(search)) ||
+        project.category.toLowerCase().includes(search),
     );
   }, [query]);
 
   return (
-    <ConfigProvider theme={{ token: { colorPrimary: "#3b82f6" } }}>
-      <main className="min-h-screen bg-[#050505] text-white font-syne py-8 md:py-20 px-4 md:px-6 selection:bg-blue-500/30">
-        <div className="max-w-6xl mx-auto">
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#a855f7",
+        },
+      }}
+    >
+      <main
+        className="
+          relative min-h-screen w-full overflow-hidden
+          bg-transparent text-white
+          font-syne selection:bg-purple-500/30
+        "
+      >
+        {/* ================================================= */}
+        {/* CONTENT */}
+        {/* ================================================= */}
 
-          {/* Header Section */}
-          <header className="flex flex-col gap-6 mb-12 md:mb-16">
+        <div className="relative z-10 mx-auto max-w-7xl px-5 py-8 md:px-10 md:py-16">
+          {/* ================================================= */}
+          {/* TOP BACK BUTTON */}
+          {/* ================================================= */}
+
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             <Link
               href="/"
-              className="group inline-flex items-center gap-2 text-slate-500 hover:text-white transition-colors w-fit"
+              className="
+              bg-[#020204]
+              w-full
+                group inline-flex items-center gap-3
+                text-slate-400
+                transition-colors duration-300
+                hover:text-white
+              "
             >
-              <ArrowLeft
-                size={14}
-                className="group-hover:-translate-x-1 transition-transform"
-              />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em]">
-                Root / Portfolio
+              <span
+                className="
+                  flex h-9 w-9 items-center justify-center
+                  rounded-full
+                  border border-white/15
+                  bg-black/20
+                  backdrop-blur-sm
+                  transition-all duration-300
+                  group-hover:border-purple-400/50
+                  group-hover:bg-purple-500/10
+                "
+              >
+                <ArrowLeft
+                  size={15}
+                  className="
+                    transition-transform duration-300
+                    group-hover:-translate-x-1
+                  "
+                />
+              </span>
+
+              <span
+                className="
+                  text-[9px]
+                  font-black
+                  uppercase
+                  tracking-[0.3em]
+                "
+              >
+                Back to portfolio
               </span>
             </Link>
+          </motion.div>
 
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9]">
-                Work{" "}
-                <span className="text-slate-800 font-light block md:inline">
-                  History
+          {/* ================================================= */}
+          {/* MY WORK HEADER */}
+          {/* NO BACKGROUND */}
+          {/* ================================================= */}
+
+          <header className="mb-14 mt-14 md:mb-20 md:mt-20">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 35,
+                filter: "blur(8px)",
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+              }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {/* Small Label */}
+
+              <div className="mb-6 flex items-center gap-3">
+                <motion.span
+                  initial={{ width: 0 }}
+                  animate={{ width: 32 }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.3,
+                  }}
+                  className="h-px bg-purple-500"
+                />
+
+                <span
+                  className="
+                    text-[9px]
+                    font-black
+                    uppercase
+                    tracking-[0.35em]
+                    text-purple-400
+                  "
+                >
+                  Selected work
+                </span>
+              </div>
+
+              {/* Main Heading */}
+
+              <h1
+                className="
+                  max-w-5xl
+                  text-6xl
+                  font-black
+                  uppercase
+                  leading-[0.85]
+                  tracking-[-0.06em]
+                  text-white
+                  sm:text-7xl
+                  md:text-9xl
+                "
+              >
+                My{" "}
+                <span
+                  className="
+                    bg-linear-to-r
+                    from-white
+                    via-purple-200
+                    to-purple-500
+                    bg-clip-text
+                    text-transparent
+                  "
+                >
+                  Work
                 </span>
               </h1>
 
-              {/* Enhanced Search Bar - Full width on mobile */}
-              <div className="relative w-full md:w-80 group">
+              {/* Description */}
+
+              <p
+                className="
+                  mt-8
+                  max-w-2xl
+                  text-sm
+                  leading-relaxed
+                  text-slate-300
+                  md:text-base
+                "
+              >
+                A collection of projects I&apos;ve designed and built — from
+                responsive websites to full-stack applications.
+              </p>
+            </motion.div>
+
+            {/* ================================================= */}
+            {/* SEARCH */}
+            {/* ================================================= */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.25,
+              }}
+              className="
+                mt-10
+                bg-[#020204]
+                flex flex-col
+                gap-5
+                md:flex-row
+                md:items-center
+                md:justify-between
+              "
+            >
+              {/* Project Count */}
+
+              <div className="flex items-center gap-3">
+                <FolderOpen size={14} className="text-purple-400" />
+
+                <span
+                  className="
+                    text-[9px]
+                    font-black
+                    uppercase
+                    tracking-[0.25em]
+                    text-slate-300
+                  "
+                >
+                  {filtered.length}{" "}
+                  {filtered.length === 1 ? "Project" : "Projects"}
+                </span>
+
+                <span className="h-1 w-1 rounded-full bg-white/30" />
+
+                <span
+                  className="
+                    text-[9px]
+                    font-bold
+                    uppercase
+                    tracking-[0.2em]
+                    text-slate-500
+                  "
+                >
+                  {projectData.length} Total
+                </span>
+              </div>
+
+              {/* Search Box */}
+
+              <div className="group relative w-full md:w-90">
                 <Search
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-blue-500 transition-colors"
                   size={16}
+                  className="
+                    absolute
+                    left-4
+                    top-1/2
+                    -translate-y-1/2
+                    text-slate-500
+                    transition-colors
+                    duration-300
+                    group-focus-within:text-purple-400
+                  "
                 />
+
                 <input
                   type="text"
                   value={query}
-                  placeholder="FILTER BY TECH OR NAME..."
+                  placeholder="SEARCH PROJECTS..."
                   onChange={(e) => setQuery(e.target.value)}
-                  className="w-full bg-white/[0.02] border border-white/10 rounded-xl py-4 md:py-4 pl-12 pr-10 text-[11px] font-bold tracking-[0.1em] uppercase focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.04] transition-all appearance-none"
+                  className="
+                    w-full
+                    rounded-2xl
+                    border
+                    border-white/15
+                    bg-black/20
+                    py-4
+                    pl-12
+                    pr-11
+                    text-[10px]
+                    font-bold
+                    uppercase
+                    tracking-[0.15em]
+                    text-white
+                    outline-none
+                    placeholder:text-slate-500
+                    backdrop-blur-sm
+                    transition-all
+                    duration-300
+                    focus:border-purple-500/50
+                    focus:bg-black/30
+                    focus:shadow-[0_0_30px_rgba(168,85,247,0.08)]
+                  "
                 />
+
                 {query && (
                   <button
+                    type="button"
                     onClick={() => setQuery("")}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white p-1"
                     aria-label="Clear search"
+                    className="
+                      absolute
+                      right-3
+                      top-1/2
+                      flex
+                      h-8
+                      w-8
+                      -translate-y-1/2
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-500
+                      transition-colors
+                      hover:bg-white/5
+                      hover:text-white
+                    "
                   >
-                    <X size={16} />
+                    <X size={14} />
                   </button>
                 )}
               </div>
-            </div>
+            </motion.div>
           </header>
 
-          {/* Registry Stats */}
-          <div className="flex items-center gap-4 mb-6 px-1">
-            <div className="flex items-center gap-2 text-[10px] font-black text-blue-500 uppercase tracking-widest whitespace-nowrap">
-              <Command size={12} className="animate-pulse" /> System Active
-            </div>
-            <div className="h-px flex-1 bg-white/5" />
-            <div className="text-[10px] font-mono text-slate-600 uppercase whitespace-nowrap">
-              {filtered.length} / {projectData.length}
-            </div>
-          </div>
+          {/* ================================================= */}
+          {/* PROJECT HEADER */}
+          {/* ================================================= */}
 
-          {/* Table Header - Desktop Only */}
-          <div className="hidden md:grid grid-cols-12 px-8 py-4 border-y border-white/5 text-[10px] font-black text-slate-600 uppercase tracking-[0.3em] bg-white/[0.01]">
-            <div className="col-span-1">#</div>
-            <div className="col-span-5">Project Identification</div>
-            <div className="col-span-3">Technologies</div>
-            <div className="col-span-3 text-right">Deployment</div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.45 }}
+            className="
+              hidden
+              border-y
+              bg-[#020204]
+              border-white/8
+              px-8
+              py-4
+              md:grid
+              grid-cols-12
+            "
+          >
+            <span className="col-span-1 text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+              #
+            </span>
 
-          {/* Table Body */}
-          <div className="divide-y divide-white/5 border-t md:border-t-0 border-white/5">
+            <span className="col-span-5 text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+              Project
+            </span>
+
+            <span className="col-span-3 text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+              Built with
+            </span>
+
+            <span className="col-span-3 text-right text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+              View
+            </span>
+          </motion.div>
+
+          {/* ================================================= */}
+          {/* PROJECT LIST */}
+          {/* ================================================= */}
+
+          <div className="border-t border-white/8 bg-[#020204] md:border-t-0">
             <AnimatePresence mode="popLayout">
-              {filtered.map((project, i) => (
-                <motion.div
+              {filtered.map((project, index) => (
+                <motion.article
                   layout
                   key={project.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  className="grid grid-cols-12 px-2 md:px-8 py-8 md:py-10 items-center group hover:bg-white/[0.02] transition-all relative overflow-hidden"
+                  initial={{
+                    opacity: 0,
+                    y: 35,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.98,
+                  }}
+                  transition={{
+                    duration: 0.55,
+                    delay: Math.min(index * 0.06, 0.4),
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="
+                    group
+                    relative
+                    grid
+                    grid-cols-12
+                    items-center
+                    border-b
+                    border-white/8
+                    px-1
+                    py-9
+                    md:px-8
+                    md:py-10
+                  "
                 >
-                  {/* Sidebar Highlight Decor */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
+                  {/* Animated Purple Line */}
 
-                  {/* ID - Hidden on very small screens, visible on md+ */}
-                  <div className="hidden md:block col-span-1 text-slate-800 font-mono text-xs font-black group-hover:text-blue-500/50 transition-colors">
-                    {(i + 1).toString().padStart(2, "0")}
+                  <motion.div
+                    initial={{
+                      scaleY: 0,
+                    }}
+                    whileInView={{
+                      scaleY: 1,
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
+                    transition={{
+                      duration: 0.7,
+                      delay: index * 0.04,
+                    }}
+                    className="
+                      absolute
+                      left-0
+                      top-0
+                      bottom-0
+                      w-0.5
+                      origin-top
+                      bg-linear-to-b
+                      from-purple-500
+                      via-blue-400
+                      to-transparent
+                      opacity-80
+                    "
+                  />
+
+                  {/* Number */}
+
+                  <div
+                    className="
+                      col-span-12
+                      mb-5
+                      md:col-span-1
+                      md:mb-0
+                    "
+                  >
+                    <span
+                      className="
+                        font-mono
+                        text-[10px]
+                        font-bold
+                        tracking-widest
+                        text-purple-400/60
+                        md:text-slate-500
+                      "
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
 
-                  {/* Project Info - Full width on mobile */}
-                  <div className="col-span-12 md:col-span-5 space-y-4 mb-6 md:mb-0">
+                  {/* Project */}
+
+                  <div className="col-span-12 md:col-span-5">
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="md:hidden text-blue-500/40 font-mono text-[10px] font-bold">
-                        // {(i + 1).toString().padStart(2, "0")}
-                      </span>
-                      <h3 className="text-2xl md:text-2xl font-black uppercase tracking-tight group-hover:text-blue-400 transition-colors leading-none">
+                      <h2
+                        className="
+                          text-2xl
+                          font-black
+                          uppercase
+                          tracking-[-0.03em]
+                          text-white
+                          transition-colors
+                          duration-300
+                          group-hover:text-purple-300
+                          md:text-3xl
+                        "
+                      >
                         {project.title}
-                      </h3>
-                      <span className="text-[9px] px-2 py-0.5 border border-white/10 text-slate-500 rounded-full font-bold uppercase tracking-tighter bg-white/[0.02]">
+                      </h2>
+
+                      <span
+                        className="
+                          rounded-full
+                          border
+                          border-white/15
+                          bg-black/20
+                          px-2.5
+                          py-1
+                          text-[8px]
+                          font-bold
+                          uppercase
+                          tracking-widest
+                          text-slate-400
+                        "
+                      >
                         {project.category}
                       </span>
                     </div>
 
-                    <p className="text-[13px] md:text-[12px] text-slate-400 leading-relaxed font-medium max-w-md">
+                    <p
+                      className="
+                        mt-4
+                        max-w-md
+                        text-[12px]
+                        leading-relaxed
+                        text-slate-300
+                        md:text-[13px]
+                      "
+                    >
                       {project.description}
                     </p>
 
                     {project.creds && (
-                      <div className="flex items-center gap-2 text-[9px] font-bold text-blue-500 tracking-widest bg-blue-500/5 w-fit px-2 py-1.5 rounded-md border border-blue-500/10">
-                        <ShieldCheck size={11} /> {project.creds}
+                      <div
+                        className="
+                          mt-4
+                          inline-flex
+                          items-center
+                          gap-2
+                          rounded-lg
+                          border
+                          border-blue-500/20
+                          bg-blue-500/6
+                          px-3
+                          py-2
+                          text-[8px]
+                          font-bold
+                          uppercase
+                          tracking-widest
+                          text-blue-300
+                        "
+                      >
+                        <ShieldCheck size={11} />
+                        {project.creds}
                       </div>
                     )}
                   </div>
 
-                  {/* Tech Tags - Stacked nicely on mobile */}
-                  <div className="col-span-12 md:col-span-3 flex gap-1.5 flex-wrap mb-8 md:mb-0">
-                    {project.stack.map((s) => (
+                  {/* Technologies */}
+
+                  <div
+                    className="
+                      col-span-12
+                      mt-7
+                      flex
+                      flex-wrap
+                      gap-2
+                      md:col-span-3
+                      md:mt-0
+                    "
+                  >
+                    {project.stack.map((tech) => (
                       <span
-                        key={s}
-                        className="text-[9px] md:text-[8px] font-black text-slate-400 border border-white/10 px-2.5 py-1 rounded bg-white/[0.03] group-hover:border-blue-500/20 group-hover:text-slate-200 transition-colors"
+                        key={tech}
+                        className="
+                          rounded-lg
+                          border
+                          border-white/15
+                          bg-black/20
+                          px-2.5
+                          py-1.5
+                          text-[8px]
+                          font-bold
+                          uppercase
+                          tracking-wider
+                          text-slate-300
+                          transition-all
+                          duration-300
+                          group-hover:border-purple-500/30
+                          group-hover:text-white
+                        "
                       >
-                        {s}
+                        {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Links - Larger touch targets for mobile */}
-                  {/* Links - Larger touch targets for mobile */}
-                  <div className="col-span-12 md:col-span-3 flex justify-start md:justify-end gap-3">
+                  {/* Actions */}
+
+                  <div
+                    className="
+                      col-span-12
+                      mt-7
+                      flex
+                      gap-3
+                      md:col-span-3
+                      md:mt-0
+                      md:justify-end
+                    "
+                  >
                     {project.github ? (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-4 md:p-3 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-all flex-1 md:flex-none flex justify-center items-center"
-                        title="View Source"
+                        aria-label={`View ${project.title} source code`}
+                        className="
+                          flex
+                          h-12
+                          w-12
+                          items-center
+                          justify-center
+                          rounded-xl
+                          border
+                          border-white/15
+                          bg-black/20
+                          text-slate-400
+                          backdrop-blur-sm
+                          transition-all
+                          duration-300
+                          hover:border-white/30
+                          hover:bg-white/10
+                          hover:text-white
+                        "
                       >
-                        <Github size={20} className="md:w-4 md:h-4" />
+                        <Github size={17} />
                       </a>
                     ) : (
-                      /* Protected State - Shown when GitHub link is missing */
                       <div
-                        className="p-4 md:p-3 rounded-xl bg-white/[0.02] border border-red-500/10 text-red-500/40 cursor-not-allowed flex-1 md:flex-none flex justify-center items-center"
-                        title="Source Code Protected"
+                        title="Source code protected"
+                        className="
+                          flex
+                          h-12
+                          w-12
+                          cursor-not-allowed
+                          items-center
+                          justify-center
+                          rounded-xl
+                          border
+                          border-red-500/15
+                          bg-red-500/4
+                          text-red-400/40
+                        "
                       >
-                        <ShieldCheck size={20} className="md:w-4 md:h-4" />
+                        <ShieldCheck size={17} />
                       </div>
                     )}
 
@@ -185,32 +654,214 @@ export default function ArchivePage() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 px-6 py-4 md:py-3 rounded-xl bg-white text-black font-black text-[10px] md:text-[9px] uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all shadow-xl shadow-white/5 flex-[2] md:flex-none"
+                      className="
+                        group/launch
+                        flex
+                        flex-1
+                        items-center
+                        justify-center
+                        gap-3
+                        rounded-xl
+                        bg-white
+                        px-5
+                        py-3
+                        text-[9px]
+                        font-black
+                        uppercase
+                        tracking-[0.2em]
+                        text-black
+                        transition-all
+                        duration-300
+                        hover:bg-purple-500
+                        hover:text-white
+                        md:flex-none
+                      "
                     >
-                      Launch <ExternalLink size={14} className="md:w-3 md:h-3" />
+                      View project
+                      <ArrowUpRight
+                        size={14}
+                        className="
+                          transition-transform
+                          duration-300
+                          group-hover/launch:translate-x-0.5
+                          group-hover/launch:-translate-y-0.5
+                        "
+                      />
                     </a>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </AnimatePresence>
           </div>
 
-          {/* Empty State */}
+          {/* ================================================= */}
+          {/* EMPTY STATE */}
+          {/* ================================================= */}
+
           {filtered.length === 0 && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="py-32 text-center border border-dashed border-white/10 rounded-3xl mt-4"
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              className="
+                flex
+                min-h-80
+                flex-col
+                items-center
+                justify-center
+                rounded-3xl
+                border
+                border-dashed
+                border-white/15
+                px-6
+                text-center
+              "
             >
-              <Terminal className="mx-auto text-slate-800 mb-6" size={48} />
-              <h4 className="text-white font-black uppercase text-sm tracking-widest mb-2">
-                Query Null
-              </h4>
-              <p className="text-slate-600 font-bold uppercase text-[9px] tracking-[0.3em] px-6">
-                No registry entries match the current search parameters.
+              <div
+                className="
+                  mb-5
+                  flex
+                  h-14
+                  w-14
+                  items-center
+                  justify-center
+                  rounded-2xl
+                  border
+                  border-white/15
+                  bg-black/20
+                "
+              >
+                <Search size={20} className="text-slate-500" />
+              </div>
+
+              <h3
+                className="
+                  text-sm
+                  font-black
+                  uppercase
+                  tracking-widest
+                  text-white
+                "
+              >
+                No projects found
+              </h3>
+
+              <p
+                className="
+                  mt-3
+                  max-w-sm
+                  text-[10px]
+                  uppercase
+                  tracking-[0.2em]
+                  leading-relaxed
+                  text-slate-500
+                "
+              >
+                Try searching for a different project, technology, or category.
               </p>
+
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                className="
+                  mt-6
+                  rounded-full
+                  border
+                  border-purple-500/30
+                  bg-purple-500/10
+                  px-5
+                  py-2.5
+                  text-[9px]
+                  font-bold
+                  uppercase
+                  tracking-widest
+                  text-purple-300
+                  transition-all
+                  hover:bg-purple-500/20
+                "
+              >
+                Show all projects
+              </button>
             </motion.div>
           )}
+
+          {/* ================================================= */}
+          {/* FOOTER */}
+          {/* ================================================= */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            whileInView={{
+              opacity: 1,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            className="
+              mt-16
+              bg-[#020204]
+              flex
+              flex-col
+              items-center
+              justify-between
+              gap-5
+              border-t
+              border-white/8
+              py-8
+              text-center
+              md:flex-row
+              md:text-left
+            "
+          >
+            <p
+              className="
+                text-[9px]
+                font-bold
+                uppercase
+                tracking-[0.25em]
+                text-slate-500
+              "
+            >
+              © {new Date().getFullYear()}{" "}
+              <span className="text-white">Rasheed Basha</span>
+            </p>
+
+            <Link
+              href="/#contact"
+              className="
+                group
+                flex
+                items-center
+                gap-2
+                text-[9px]
+                font-bold
+                uppercase
+                tracking-[0.25em]
+                text-slate-400
+                transition-colors
+                hover:text-white
+              "
+            >
+              Have a project?
+              <ArrowRight
+                size={13}
+                className="
+                  transition-transform
+                  group-hover:translate-x-1
+                "
+              />
+            </Link>
+          </motion.div>
         </div>
       </main>
     </ConfigProvider>

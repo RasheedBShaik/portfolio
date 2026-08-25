@@ -30,7 +30,7 @@ export default function Navbar() {
       }}
     >
       <nav
-        className="fixed top-0 left-0 right-0 z-[9999] transition-all duration-700 
+        className="fixed top-0 left-0 right-0 z-9999 transition-all duration-700 
              bg-black/40 backdrop-blur-md py-2 shadow-2xl"
       >
         <div className="mx-auto max-w-7xl px-6 md:px-12 flex items-center justify-between">
@@ -57,7 +57,7 @@ export default function Navbar() {
                 RASHEED<span className="text-purple-500">BASHA</span>
               </span>
               <span className="text-[7px] md:text-[9px] uppercase tracking-[0.4em] text-purple-300/90 mt-1 transition-all duration-500 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] font-bold">
-                Full Stack dev
+                Full Stack Developer
               </span>
             </div>
           </a>
@@ -73,12 +73,12 @@ export default function Navbar() {
                 >
                   {link.name}
                   {/* The Animated Underline with Glow */}
-                  <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-gradient-to-r from-purple-500 via-blue-400 to-purple-500 transition-all duration-500 ease-out group-hover:w-full group-hover:shadow-[0_0_12px_rgba(168,85,247,0.8)]" />
+                  <span className="absolute -bottom-2 left-0 h-0.5 w-0 bg-linear-to-r from-purple-500 via-blue-400 to-purple-500 transition-all duration-500 ease-out group-hover:w-full group-hover:shadow-[0_0_12px_rgba(168,85,247,0.8)]" />
                 </a>
               ))}
             </div>
 
-            <div className="h-5 w-[1px] bg-white/10" />
+            <div className="h-5 w-px bg-white/10" />
 
             {/* Social Icons - Pulse Hover */}
             <div className="flex items-center gap-3 sm:gap-5">
@@ -169,7 +169,7 @@ export default function Navbar() {
                   0{i + 1}
                 </span>
                 {link.name}
-                <span className="block h-[1px] w-0 bg-purple-500 transition-all duration-500 group-hover:w-full mt-2" />
+                <span className="block h-px w-0 bg-purple-500 transition-all duration-500 group-hover:w-full mt-2" />
               </a>
             ))}
           </div>
