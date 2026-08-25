@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { Analytics } from "@vercel/analytics/next";
 import InteractiveBackground from "./Sections/Animation";
-
-// Next.js bundles this side-effect CSS import.
-// @ts-expect-error -- handled by Next.js
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Rasheed | Full Stack Developer",
