@@ -12,41 +12,104 @@ import {
   X,
   FolderOpen,
   ArrowRight,
+  ArrowUp,
+  Mail,
+  Linkedin,
+  Layers,
+  Code2,
+  FileCode2,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
-import { projectData } from "../../../projectsData";
+import { projectData, ProjectType } from "../../../projectsData";
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/rasheedbshaik", icon: Github },
+  { label: "LinkedIn", href: "https://linkedin.com/in/rasheedbshaik", icon: Linkedin },
+  { label: "Email", href: "mailto:rasheed.sk7337@gmail.com", icon: Mail },
+];
+
+const filterTabs: { label: string; value: ProjectType | "all" }[] = [
+  { label: "All Projects", value: "all" },
+  { label: "Full Stack", value: "fullstack" },
+  { label: "Frontend", value: "frontend" },
+  { label: "Single Page", value: "singlepage" },
+  { label: "Features & UI", value: "feature" },
+];
 
 export default function ArchivePage() {
   const [query, setQuery] = useState("");
+  const [activeTab, setActiveTab] = useState<ProjectType | "all">("all");
 
   const filtered = useMemo(() => {
     const search = query.trim().toLowerCase();
 
-    if (!search) return projectData;
+    return projectData.filter((project) => {
+      // Tab filter
+      const matchesTab = activeTab === "all" || project.projectType === activeTab;
 
-    return projectData.filter(
-      (project) =>
+      // Search query filter
+      const matchesSearch =
+        !search ||
         project.title.toLowerCase().includes(search) ||
         project.stack.some((tech) => tech.toLowerCase().includes(search)) ||
-        project.category.toLowerCase().includes(search),
-    );
-  }, [query]);
+        project.category.toLowerCase().includes(search);
+
+      return matchesTab && matchesSearch;
+    });
+  }, [query, activeTab]);
 
   return (
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#a855f7",
+          colorPrimary: "#7652B5",
         },
       }}
     >
       <main
         className="
           relative min-h-screen w-full overflow-hidden
-          bg-transparent text-white
-          font-syne selection:bg-purple-500/30
+          bg-[#FAF9F6] text-[#292333]
+          font-syne selection:bg-violet-200
         "
       >
+        {/* ================================================= */}
+        {/* AMBIENT BACKGROUND */}
+        {/* ================================================= */}
+
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <motion.div
+            animate={{
+              x: [0, 80, -40, 0],
+              y: [0, -50, 60, 0],
+              scale: [1, 1.15, 0.9, 1],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute left-[-10%] top-[10%] h-[450px] w-[450px] rounded-full bg-violet-200/35 blur-[140px]"
+          />
+
+          <motion.div
+            animate={{
+              x: [0, -70, 50, 0],
+              y: [0, 60, -40, 0],
+              scale: [1, 0.9, 1.15, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-violet-300/25 blur-[150px]"
+          />
+
+          <div className="absolute inset-0 opacity-[0.022] [background-image:linear-gradient(#51416F_1px,transparent_1px),linear-gradient(90deg,#51416F_1px,transparent_1px)] [background-size:72px_72px]" />
+        </div>
+
         {/* ================================================= */}
         {/* CONTENT */}
         {/* ================================================= */}
@@ -67,24 +130,22 @@ export default function ArchivePage() {
             <Link
               href="/"
               className="
-              bg-[#020204]
-              w-full
                 group inline-flex items-center gap-3
-                text-slate-400
+                text-[#777381]
                 transition-colors duration-300
-                hover:text-white
+                hover:text-[#292333]
               "
             >
               <span
                 className="
                   flex h-9 w-9 items-center justify-center
                   rounded-full
-                  border border-white/15
-                  bg-black/20
+                  border border-violet-900/10
+                  bg-white/60
                   backdrop-blur-sm
                   transition-all duration-300
-                  group-hover:border-purple-400/50
-                  group-hover:bg-purple-500/10
+                  group-hover:border-violet-500/40
+                  group-hover:bg-violet-500/10
                 "
               >
                 <ArrowLeft
@@ -111,10 +172,9 @@ export default function ArchivePage() {
 
           {/* ================================================= */}
           {/* MY WORK HEADER */}
-          {/* NO BACKGROUND */}
           {/* ================================================= */}
 
-          <header className="mb-14 mt-14 md:mb-20 md:mt-20">
+          <header className="mb-14 mt-14 md:my-8">
             <motion.div
               initial={{
                 opacity: 0,
@@ -131,32 +191,6 @@ export default function ArchivePage() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              {/* Small Label */}
-
-              <div className="mb-6 flex items-center gap-3">
-                <motion.span
-                  initial={{ width: 0 }}
-                  animate={{ width: 32 }}
-                  transition={{
-                    duration: 0.7,
-                    delay: 0.3,
-                  }}
-                  className="h-px bg-purple-500"
-                />
-
-                <span
-                  className="
-                    text-[9px]
-                    font-black
-                    uppercase
-                    tracking-[0.35em]
-                    text-purple-400
-                  "
-                >
-                  Selected work
-                </span>
-              </div>
-
               {/* Main Heading */}
 
               <h1
@@ -167,7 +201,7 @@ export default function ArchivePage() {
                   uppercase
                   leading-[0.85]
                   tracking-[-0.06em]
-                  text-white
+                  text-[#292333]
                   sm:text-7xl
                   md:text-9xl
                 "
@@ -175,10 +209,10 @@ export default function ArchivePage() {
                 My{" "}
                 <span
                   className="
-                    bg-linear-to-r
-                    from-white
-                    via-purple-200
-                    to-purple-500
+                    bg-gradient-to-r
+                    from-[#292333]
+                    via-[#51416F]
+                    to-[#9675D9]
                     bg-clip-text
                     text-transparent
                   "
@@ -195,7 +229,7 @@ export default function ArchivePage() {
                   max-w-2xl
                   text-sm
                   leading-relaxed
-                  text-slate-300
+                  text-[#777381]
                   md:text-base
                 "
               >
@@ -205,7 +239,7 @@ export default function ArchivePage() {
             </motion.div>
 
             {/* ================================================= */}
-            {/* SEARCH */}
+            {/* FILTER TABS & SEARCH */}
             {/* ================================================= */}
 
             <motion.div
@@ -223,50 +257,39 @@ export default function ArchivePage() {
               }}
               className="
                 mt-10
-                bg-[#020204]
                 flex flex-col
-                gap-5
+                gap-6
                 md:flex-row
                 md:items-center
                 md:justify-between
               "
             >
-              {/* Project Count */}
-
-              <div className="flex items-center gap-3">
-                <FolderOpen size={14} className="text-purple-400" />
-
-                <span
-                  className="
-                    text-[9px]
-                    font-black
-                    uppercase
-                    tracking-[0.25em]
-                    text-slate-300
-                  "
-                >
-                  {filtered.length}{" "}
-                  {filtered.length === 1 ? "Project" : "Projects"}
-                </span>
-
-                <span className="h-1 w-1 rounded-full bg-white/30" />
-
-                <span
-                  className="
-                    text-[9px]
-                    font-bold
-                    uppercase
-                    tracking-[0.2em]
-                    text-slate-500
-                  "
-                >
-                  {projectData.length} Total
-                </span>
+              {/* Filter Tabs */}
+              <div className="flex flex-wrap items-center gap-2">
+                {filterTabs.map((tab) => {
+                  const isActive = activeTab === tab.value;
+                  return (
+                    <button
+                      key={tab.value}
+                      onClick={() => setActiveTab(tab.value)}
+                      className={`
+                        rounded-xl border px-4 py-2.5 text-[9px] font-bold uppercase tracking-wider transition-all cursor-pointer
+                        ${
+                          isActive
+                            ? "border-violet-500/50 bg-violet-500/10 text-violet-700 shadow-sm"
+                            : "border-violet-900/10 bg-white/50 text-[#777381] hover:border-violet-900/20 hover:text-[#292333]"
+                        }
+                      `}
+                    >
+                      {tab.label}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Search Box */}
 
-              <div className="group relative w-full md:w-90">
+              <div className="group relative w-full md:w-80">
                 <Search
                   size={16}
                   className="
@@ -274,10 +297,10 @@ export default function ArchivePage() {
                     left-4
                     top-1/2
                     -translate-y-1/2
-                    text-slate-500
+                    text-[#777381]/50
                     transition-colors
                     duration-300
-                    group-focus-within:text-purple-400
+                    group-focus-within:text-violet-600
                   "
                 />
 
@@ -290,8 +313,8 @@ export default function ArchivePage() {
                     w-full
                     rounded-2xl
                     border
-                    border-white/15
-                    bg-black/20
+                    border-violet-900/10
+                    bg-white/60
                     py-4
                     pl-12
                     pr-11
@@ -299,15 +322,15 @@ export default function ArchivePage() {
                     font-bold
                     uppercase
                     tracking-[0.15em]
-                    text-white
+                    text-[#292333]
                     outline-none
-                    placeholder:text-slate-500
+                    placeholder:text-[#777381]/50
                     backdrop-blur-sm
                     transition-all
                     duration-300
-                    focus:border-purple-500/50
-                    focus:bg-black/30
-                    focus:shadow-[0_0_30px_rgba(168,85,247,0.08)]
+                    focus:border-violet-500/50
+                    focus:bg-white
+                    focus:shadow-[0_0_30px_rgba(118,82,181,0.08)]
                   "
                 />
 
@@ -327,10 +350,10 @@ export default function ArchivePage() {
                       items-center
                       justify-center
                       rounded-lg
-                      text-slate-500
+                      text-[#777381]
                       transition-colors
-                      hover:bg-white/5
-                      hover:text-white
+                      hover:bg-violet-500/10
+                      hover:text-[#292333]
                     "
                   >
                     <X size={14} />
@@ -338,6 +361,14 @@ export default function ArchivePage() {
                 )}
               </div>
             </motion.div>
+
+            {/* Project Count Info Bar */}
+            <div className="mt-6 flex items-center gap-3 border-t border-violet-900/10 pt-4">
+              <FolderOpen size={14} className="text-[#51416F]" />
+              <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#777381]">
+                Showing {filtered.length} of {projectData.length} Projects
+              </span>
+            </div>
           </header>
 
           {/* ================================================= */}
@@ -351,27 +382,26 @@ export default function ArchivePage() {
             className="
               hidden
               border-y
-              bg-[#020204]
-              border-white/8
+              border-violet-900/10
               px-8
               py-4
               md:grid
               grid-cols-12
             "
           >
-            <span className="col-span-1 text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+            <span className="col-span-1 text-[9px] font-black uppercase tracking-[0.3em] text-[#777381]">
               #
             </span>
 
-            <span className="col-span-5 text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+            <span className="col-span-5 text-[9px] font-black uppercase tracking-[0.3em] text-[#777381]">
               Project
             </span>
 
-            <span className="col-span-3 text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+            <span className="col-span-3 text-[9px] font-black uppercase tracking-[0.3em] text-[#777381]">
               Built with
             </span>
 
-            <span className="col-span-3 text-right text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">
+            <span className="col-span-3 text-right text-[9px] font-black uppercase tracking-[0.3em] text-[#777381]">
               View
             </span>
           </motion.div>
@@ -380,7 +410,7 @@ export default function ArchivePage() {
           {/* PROJECT LIST */}
           {/* ================================================= */}
 
-          <div className="border-t border-white/8 bg-[#020204] md:border-t-0">
+          <div className="border-t border-violet-900/10 md:border-t-0">
             <AnimatePresence mode="popLayout">
               {filtered.map((project, index) => (
                 <motion.article
@@ -410,14 +440,14 @@ export default function ArchivePage() {
                     grid-cols-12
                     items-center
                     border-b
-                    border-white/8
+                    border-violet-900/10
                     px-1
                     py-9
                     md:px-8
                     md:py-10
                   "
                 >
-                  {/* Animated Purple Line */}
+                  {/* Animated Violet Line */}
 
                   <motion.div
                     initial={{
@@ -440,9 +470,9 @@ export default function ArchivePage() {
                       bottom-0
                       w-0.5
                       origin-top
-                      bg-linear-to-b
-                      from-purple-500
-                      via-blue-400
+                      bg-gradient-to-b
+                      from-violet-600
+                      via-violet-400
                       to-transparent
                       opacity-80
                     "
@@ -464,8 +494,8 @@ export default function ArchivePage() {
                         text-[10px]
                         font-bold
                         tracking-widest
-                        text-purple-400/60
-                        md:text-slate-500
+                        text-violet-600/70
+                        md:text-[#777381]
                       "
                     >
                       {String(index + 1).padStart(2, "0")}
@@ -482,10 +512,10 @@ export default function ArchivePage() {
                           font-black
                           uppercase
                           tracking-[-0.03em]
-                          text-white
+                          text-[#292333]
                           transition-colors
                           duration-300
-                          group-hover:text-purple-300
+                          group-hover:text-violet-700
                           md:text-3xl
                         "
                       >
@@ -496,15 +526,15 @@ export default function ArchivePage() {
                         className="
                           rounded-full
                           border
-                          border-white/15
-                          bg-black/20
+                          border-violet-900/10
+                          bg-white/60
                           px-2.5
                           py-1
                           text-[8px]
                           font-bold
                           uppercase
                           tracking-widest
-                          text-slate-400
+                          text-[#777381]
                         "
                       >
                         {project.category}
@@ -517,7 +547,7 @@ export default function ArchivePage() {
                         max-w-md
                         text-[12px]
                         leading-relaxed
-                        text-slate-300
+                        text-[#777381]
                         md:text-[13px]
                       "
                     >
@@ -533,15 +563,15 @@ export default function ArchivePage() {
                           gap-2
                           rounded-lg
                           border
-                          border-blue-500/20
-                          bg-blue-500/6
+                          border-violet-500/20
+                          bg-violet-500/5
                           px-3
                           py-2
                           text-[8px]
                           font-bold
                           uppercase
                           tracking-widest
-                          text-blue-300
+                          text-violet-700
                         "
                       >
                         <ShieldCheck size={11} />
@@ -569,19 +599,19 @@ export default function ArchivePage() {
                         className="
                           rounded-lg
                           border
-                          border-white/15
-                          bg-black/20
+                          border-violet-900/10
+                          bg-white/60
                           px-2.5
                           py-1.5
                           text-[8px]
                           font-bold
                           uppercase
                           tracking-wider
-                          text-slate-300
+                          text-[#777381]
                           transition-all
                           duration-300
-                          group-hover:border-purple-500/30
-                          group-hover:text-white
+                          group-hover:border-violet-500/30
+                          group-hover:text-[#292333]
                         "
                       >
                         {tech}
@@ -616,15 +646,15 @@ export default function ArchivePage() {
                           justify-center
                           rounded-xl
                           border
-                          border-white/15
-                          bg-black/20
-                          text-slate-400
+                          border-violet-900/10
+                          bg-white/60
+                          text-[#777381]
                           backdrop-blur-sm
                           transition-all
                           duration-300
-                          hover:border-white/30
-                          hover:bg-white/10
-                          hover:text-white
+                          hover:border-violet-500/30
+                          hover:bg-white
+                          hover:text-[#292333]
                         "
                       >
                         <Github size={17} />
@@ -643,7 +673,7 @@ export default function ArchivePage() {
                           border
                           border-red-500/15
                           bg-red-500/4
-                          text-red-400/40
+                          text-red-600/50
                         "
                       >
                         <ShieldCheck size={17} />
@@ -662,18 +692,17 @@ export default function ArchivePage() {
                         justify-center
                         gap-3
                         rounded-xl
-                        bg-white
+                        bg-[#292333]
                         px-5
                         py-3
                         text-[9px]
                         font-black
                         uppercase
                         tracking-[0.2em]
-                        text-black
+                        text-white
                         transition-all
                         duration-300
-                        hover:bg-purple-500
-                        hover:text-white
+                        hover:bg-violet-600
                         md:flex-none
                       "
                     >
@@ -717,7 +746,7 @@ export default function ArchivePage() {
                 rounded-3xl
                 border
                 border-dashed
-                border-white/15
+                border-violet-900/20
                 px-6
                 text-center
               "
@@ -732,11 +761,11 @@ export default function ArchivePage() {
                   justify-center
                   rounded-2xl
                   border
-                  border-white/15
-                  bg-black/20
+                  border-violet-900/10
+                  bg-white/60
                 "
               >
-                <Search size={20} className="text-slate-500" />
+                <Search size={20} className="text-[#777381]" />
               </div>
 
               <h3
@@ -745,7 +774,7 @@ export default function ArchivePage() {
                   font-black
                   uppercase
                   tracking-widest
-                  text-white
+                  text-[#292333]
                 "
               >
                 No projects found
@@ -759,7 +788,7 @@ export default function ArchivePage() {
                   uppercase
                   tracking-[0.2em]
                   leading-relaxed
-                  text-slate-500
+                  text-[#777381]
                 "
               >
                 Try searching for a different project, technology, or category.
@@ -767,101 +796,93 @@ export default function ArchivePage() {
 
               <button
                 type="button"
-                onClick={() => setQuery("")}
+                onClick={() => {
+                  setQuery("");
+                  setActiveTab("all");
+                }}
                 className="
                   mt-6
                   rounded-full
                   border
-                  border-purple-500/30
-                  bg-purple-500/10
+                  border-violet-500/30
+                  bg-violet-500/10
                   px-5
                   py-2.5
                   text-[9px]
                   font-bold
                   uppercase
                   tracking-widest
-                  text-purple-300
+                  text-violet-700
                   transition-all
-                  hover:bg-purple-500/20
+                  hover:bg-violet-500/20
                 "
               >
-                Show all projects
+                Reset filters
               </button>
             </motion.div>
           )}
 
           {/* ================================================= */}
-          {/* FOOTER */}
+          {/* PROFESSIONAL FOOTER */}
           {/* ================================================= */}
 
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            whileInView={{
-              opacity: 1,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-            className="
-              mt-16
-              bg-[#020204]
-              flex
-              flex-col
-              items-center
-              justify-between
-              gap-5
-              border-t
-              border-white/8
-              py-8
-              text-center
-              md:flex-row
-              md:text-left
-            "
-          >
-            <p
-              className="
-                text-[9px]
-                font-bold
-                uppercase
-                tracking-[0.25em]
-                text-slate-500
-              "
-            >
-              © {new Date().getFullYear()}{" "}
-              <span className="text-white">Rasheed Basha</span>
-            </p>
+          <footer className="mt-24 border-t border-violet-900/10 pt-16">
+            <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+              <div>
+                <Link href="/" className="group inline-block">
+                  <span className="font-syne text-xl font-extrabold tracking-wider text-[#292333]">
+                    RASHEED<span className="text-violet-600">BASHA</span>
+                  </span>
+                </Link>
+                <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-[#777381]">
+                  Full Stack Developer & Software Engineer
+                </p>
+              </div>
 
-            <Link
-              href="/#contact"
-              className="
-                group
-                flex
-                items-center
-                gap-2
-                text-[9px]
-                font-bold
-                uppercase
-                tracking-[0.25em]
-                text-slate-400
-                transition-colors
-                hover:text-white
-              "
-            >
-              Have a project?
-              <ArrowRight
-                size={13}
-                className="
-                  transition-transform
-                  group-hover:translate-x-1
-                "
-              />
-            </Link>
-          </motion.div>
+              <div className="flex flex-wrap items-center gap-6 sm:gap-8">
+                <div className="flex items-center gap-3">
+                  {socials.map(({ label, href, icon: Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      aria-label={label}
+                      title={label}
+                      target={label === "Email" ? undefined : "_blank"}
+                      rel={label === "Email" ? undefined : "noopener noreferrer"}
+                      className="group relative flex h-10 w-10 items-center justify-center rounded-xl border border-violet-900/10 bg-white/60 text-[#777381] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-500/30 hover:bg-white hover:text-[#292333]"
+                    >
+                      <Icon size={16} strokeWidth={1.7} />
+                    </a>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="group flex items-center gap-2 rounded-xl border border-violet-900/10 bg-white/60 px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider text-[#292333] backdrop-blur-sm transition-all duration-300 hover:border-violet-500/40 hover:bg-white cursor-pointer"
+                  aria-label="Back to top"
+                >
+                  <span>Back to top</span>
+                  <ArrowUp size={14} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="my-10 h-px w-full bg-violet-900/10" />
+
+            <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left pb-8">
+              <p className="text-[11px] font-medium tracking-wide text-[#777381]">
+                © {new Date().getFullYear()} <span className="font-semibold text-[#292333]">Rasheed Basha</span>. All rights reserved.
+              </p>
+
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#777381]">
+                  Available for Full-time Roles & Projects
+                </span>
+              </div>
+            </div>
+          </footer>
         </div>
       </main>
     </ConfigProvider>

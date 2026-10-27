@@ -1,151 +1,192 @@
+
 "use client";
 
-import { Github, Linkedin, ArrowRight, FileText, Mail } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+import { Github, Linkedin, ArrowRight, Mail, Download } from "lucide-react";
+
+const technologies = ["React", "Next.js", "TypeScript", "Python", "Node.js", "Tailwind CSS"];
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/rasheedbshaik", icon: Github },
+  { label: "LinkedIn", href: "https://linkedin.com/in/rasheedbshaik", icon: Linkedin },
+  { label: "Email", href: "mailto:rasheed.sk7337@gmail.com", icon: Mail },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
+  const reduce = useReducedMotion();
+  const delay = (value: number) => (reduce ? 0 : value);
+
+  const reveal = {
+    hidden: { opacity: 0, y: reduce ? 0 : 12, filter: reduce ? "blur(0px)" : "blur(3px)" },
+    visible: {
+      opacity: 1, y: 0, filter: "blur(0px)",
+      transition: { duration: delay(0.45), ease },
+    },
+  };
+
+  const nameTransition = reduce ? { duration: 0 } : {
+    opacity: { duration: 0.25 },
+    scale: { type: "spring" as const, stiffness: 70, damping: 17, mass: 1, delay: 0.1 },
+    x: { type: "spring" as const, stiffness: 60, damping: 17, delay: 0.1 },
+    filter: { duration: 0.55, delay: 0.1 },
+  };
+
+  const fallingContainer = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: reduce ? 0 : 0.075, delayChildren: delay(0.65) },
+    },
+  };
+
+  const fallingItem = {
+    hidden: reduce ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -35, scale: 0.92 },
+    visible: {
+      opacity: 1, y: 0, scale: 1,
+      transition: reduce ? { duration: 0 } : {
+        type: "spring" as const, stiffness: 220, damping: 16, mass: 0.8,
+      },
+    },
+  };
+
   return (
-    <section
-      className="relative min-h-screen w-full overflow-hidden selection:bg-purple-500/30 font-syne flex flex-col justify-center"
-      id="top"
-    >
-      {/* Content Layer */}
-      <div className="relative z-20 flex flex-col items-center px-6 py-12 md:py-24 text-center">
-        {/* Main Headline */}
-        <div className="relative mb-4 md:mb-6">
-          <h1 className="max-w-6xl text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] font-extrabold tracking-tighter text-white leading-[0.9] md:leading-[0.8] drop-shadow-2xl">
-            I&apos;m{" "}
-            <span className="bg-linear-to-r from-blue-400 via-purple-400 to-fuchsia-500 bg-clip-text text-transparent">
-              Rasheed
-            </span>
-          </h1>
-        </div>
+    <section id="top" className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-x-clip bg-[#FAF9F6] px-4 pb-10 pt-20 font-syne text-[#292333] selection:bg-violet-200 sm:px-8 sm:pb-10 sm:pt-22">
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <motion.div
+          className="absolute left-1/2 top-[4%] h-[min(55vw,480px)] w-[min(85vw,760px)] -translate-x-1/2 rounded-full bg-violet-200/35 blur-[100px]"
+          animate={reduce ? undefined : { scale: [1, 1.07, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -right-36 bottom-0 h-72 w-72 rounded-full bg-violet-200/25 blur-[100px]"
+          animate={reduce ? undefined : { x: [0, -20, 0], y: [0, -15, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="absolute inset-0 opacity-[0.022] [background-image:linear-gradient(#51416F_1px,transparent_1px),linear-gradient(90deg,#51416F_1px,transparent_1px)] [background-size:72px_72px]" />
+      </div>
 
-        {/* Bio Section */}
-        <div className="mt-4 md:mt-8 max-w-2xl w-full group">
-          <div
-            className="relative rounded-3xl md:rounded-[2.5rem]
-  border border-white/10
-  p-6 md:p-10
-  backdrop-blur-xl
-  shadow-[0_0_40px_rgba(0,0,0,0.6)]
-  transition-all duration-300
-  hover:border-blue-400/40"
+      {/* Main content */}
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center text-center">
+        {/* Name reveal */}
+        <div className="relative z-10 flex w-full flex-col items-center">
+          <motion.p
+            initial={{ opacity: 0, x: reduce ? 0 : -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: delay(0.45), ease }}
+            className="mb-3 text-base font-semibold tracking-[0.12em] text-[#51416F] sm:mb-4 sm:text-xl"
           >
-            {/* subtle overlay to kill background noise */}
-            <div className="absolute inset-0 rounded-[inherit] bg-black/30 backdrop-blur-xl pointer-events-none" />
+            Hello, I'm
+          </motion.p>
 
-            <p
-              className="relative z-10 text-base sm:text-lg md:text-2xl leading-relaxed
-    text-slate-100 font-light tracking-wide"
+          <div className="w-full overflow-visible px-1">
+            <motion.div
+              initial={reduce ? { opacity: 1, scale: 1, x: 0, filter: "blur(0px)" } : { opacity: 0, scale: 1.18, x: "-1vw", filter: "blur(7px)" }}
+              animate={{ opacity: 1, scale: 1, x: 0, filter: "blur(0px)" }}
+              transition={nameTransition}
+              className="mx-auto w-fit max-w-full origin-center overflow-visible"
             >
-              I build{" "}
-              <span className="text-white font-semibold">
-                fast, scalable software
-              </span>{" "}
-              with{" "}
-              <span className="text-blue-300 font-semibold">clean code</span>{" "}
-              and{" "}
-              <span className="text-purple-300 font-semibold">
-                thoughtful design.
-              </span>
-            </p>
-
-            <div className="relative z-10 mt-6 md:mt-8 flex flex-wrap justify-center gap-2 md:gap-3">
-              {[
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Python",
-                "Node.js",
-                "Tailwind",
-              ].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 md:px-4 py-1 md:py-1.5
-          rounded-lg md:rounded-xl
-          bg-black/40
-          border border-white/10
-          text-[10px] md:text-[11px]
-          font-semibold tracking-widest
-          text-slate-200
-          transition-all duration-300
-          hover:text-white
-          hover:border-blue-400/50
-          hover:bg-blue-500/20"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Action Row - Stacked on mobile, row on desktop */}
-        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center gap-6 animate-fade-in-up">
-          <a
-            href="#projects"
-            className="w-full sm:w-auto group relative flex items-center justify-center gap-4 overflow-hidden rounded-full bg-white px-8 md:px-10 py-4 md:py-5 font-black text-black transition-all active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-          >
-            <span className="relative z-10 uppercase tracking-tighter text-base md:text-lg transition-colors duration-300 group-hover:text-white">
-              Explore Works
-            </span>
-
-            {/* Arrow Container */}
-            <div className="relative z-10 flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full bg-black text-white transition-all duration-300 group-hover:bg-white group-hover:text-black">
-              <ArrowRight
-                size={16}
-                className="transition-transform duration-300 group-hover:translate-x-1"
+              <h1 className="whitespace-nowrap px-[0.12em] py-[0.04em] text-[clamp(2.55rem,10.5vw,8.5rem)] font-extrabold uppercase leading-[1.12] tracking-[-0.035em] sm:text-[clamp(4rem,9.5vw,8.5rem)]">
+                <span className="bg-gradient-to-r from-[#292333] via-[#51416F] to-[#9675D9] bg-clip-text text-transparent">RASHEED</span>
+              </h1>
+              <motion.div
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ duration: delay(0.7), delay: delay(0.4), ease }}
+                className="mt-2 h-1 w-full origin-center rounded-full bg-gradient-to-r from-violet-600 via-violet-400/80 to-violet-300/10 sm:mt-3 sm:h-1.5"
               />
-            </div>
-
-            {/* Background Slide Effect */}
-            <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-blue-600 via-purple-500 to-blue-400 transition-transform duration-500 ease-out group-hover:translate-x-0" />
-          </a>
-
-          {/* Social & Contact Cluster */}
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {/* GitHub - White Glow */}
-            <a
-              href="https://github.com/rasheedbshaik"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-white hover:bg-white/10 hover:border-white/40 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-              title="GitHub"
-            >
-              <Github size={20} />
-            </a>
-
-            {/* LinkedIn - Blue Glow */}
-            <a
-              href="https://linkedin.com/in/rasheedbshaik"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-[#0A66C2] hover:bg-[#0A66C2]/10 hover:border-[#0A66C2]/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(10,102,194,0.2)]"
-              title="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
-
-            {/* Email - Cyber Cyan/Blue Glow */}
-            <a
-              href="mailto:rasheed.sk7337@gmail.com"
-              className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
-              title="Send Email"
-            >
-              <Mail size={20} />
-            </a>
-
-            {/* Resume - Purple/Vortex Glow */}
-            <a
-              href="/resume/rasheed-Basha.pdf"
-              target="_blank"
-              className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 text-white/50 transition-all duration-300 hover:text-purple-400 hover:bg-purple-400/10 hover:border-purple-400/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
-              title="Open Resume"
-            >
-              <FileText size={20} />
-            </a>
+            </motion.div>
           </div>
         </div>
+
+        {/* Introduction */}
+        <motion.div variants={reveal} initial="hidden" animate="visible" transition={{ delay: delay(0.4) }} className="mt-6 max-w-3xl sm:mt-7">
+          <h2 className="text-lg font-bold leading-snug tracking-[-0.035em] text-[#292333] sm:text-2xl md:text-3xl">
+            Full-Stack Developer<span className="text-violet-600">{" "}building for the web.</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#777381] sm:text-base sm:leading-7">
+            I build modern web applications with clean code, thoughtful
+            interfaces, and a focus on performance, usability, and scalability.
+          </p>
+        </motion.div>
+
+        {/* Primary actions */}
+        <motion.div variants={reveal} initial="hidden" animate="visible" transition={{ delay: delay(0.55) }} className="mt-5 flex w-full flex-col justify-center gap-3 sm:mt-6 sm:w-auto sm:flex-row">
+          <motion.a
+            href="#projects"
+            whileHover={reduce ? undefined : { y: -3 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
+            className="group flex items-center justify-between gap-8 rounded-xl bg-[#292333] px-5 py-3.5 text-white shadow-[0_8px_24px_rgba(41,35,51,0.1)] transition-colors duration-300 hover:bg-violet-700 sm:min-w-[190px]"
+          >
+            <span className="text-xs font-bold uppercase tracking-[0.12em]">Explore Projects</span>
+            <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </motion.a>
+          <motion.a
+            href="/resume/rasheed-basha.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={reduce ? undefined : { y: -3 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
+            className="flex items-center justify-center gap-2 rounded-xl border border-[#E5E1E9] bg-white/75 px-5 py-3.5 text-xs font-bold uppercase tracking-[0.12em] text-[#51416F] transition-colors duration-300 hover:border-violet-300 hover:bg-violet-50 sm:min-w-[190px]"
+          >
+            <Download size={16} />View Resume
+          </motion.a>
+        </motion.div>
+
+        {/* Falling technology badges */}
+        <motion.div variants={fallingContainer} initial="hidden" animate="visible" className="mt-7 w-full max-w-2xl sm:mt-8">
+          <motion.p
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { duration: delay(0.35), ease } },
+            }}
+            className="mb-3 text-[9px] font-semibold uppercase tracking-[0.24em] text-[#96909F]"
+          >
+            Technologies I Work With
+          </motion.p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {technologies.map((tech) => (
+              <motion.span
+                key={tech}
+                variants={fallingItem}
+                whileHover={reduce ? undefined : { y: -3, scale: 1.035 }}
+                className="rounded-lg border border-[#E9E5EF] bg-white/80 px-3 py-1.5 text-[10px] font-medium tracking-wide text-[#625B70] shadow-[0_3px_10px_rgba(41,35,51,0.03)] transition-colors duration-200 hover:border-violet-300 hover:bg-violet-50 hover:text-violet-800 sm:py-2 sm:text-[11px]"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Falling social icons */}
+        <motion.div variants={fallingContainer} initial="hidden" animate="visible" className="mt-6 flex flex-col items-center gap-3 sm:mt-7">
+          <div className="flex items-center gap-3">
+            {socials.map(({ label, href, icon: Icon }) => (
+              <motion.a
+                key={label}
+                variants={fallingItem}
+                href={href}
+                title={label}
+                aria-label={label}
+                target={label === "Email" ? undefined : "_blank"}
+                rel={label === "Email" ? undefined : "noopener noreferrer"}
+                whileHover={reduce ? undefined : { y: -3, scale: 1.05 }}
+                whileTap={reduce ? undefined : { scale: 0.96 }}
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E1E9] bg-white/80 text-[#77717F] transition-colors duration-300 hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700 sm:h-11 sm:w-11"
+              >
+                <Icon size={18} strokeWidth={1.7} />
+              </motion.a>
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              {!reduce && <motion.span animate={{ scale: [1, 2, 1], opacity: [0.4, 0, 0.4] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} className="absolute inset-0 rounded-full bg-emerald-500" />}
+              <span className="relative m-auto h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            </span>
+            <span className="text-[9px] font-medium uppercase tracking-[0.16em] text-[#898391] sm:text-[10px]">Open to opportunities</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

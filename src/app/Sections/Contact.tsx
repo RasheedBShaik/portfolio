@@ -9,7 +9,6 @@ import {
   Github,
   Linkedin,
   Mail,
-  Sparkles,
 } from "lucide-react";
 
 export const Contact = () => {
@@ -68,14 +67,14 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative w-full overflow-hidden px-6 py-32 font-syne"
+      className="relative w-full overflow-hidden bg-[#FAF9F6] px-6 py-32 font-syne text-[#292333]"
     >
       {/* ===================================================== */}
       {/* INTERACTIVE BACKGROUND */}
       {/* ===================================================== */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Blue glow */}
+        {/* Soft Violet glow matching Hero */}
         <motion.div
           animate={{
             x: [0, 80, -40, 0],
@@ -87,10 +86,10 @@ export const Contact = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[-10%] top-[10%] h-112.5 w-112.5 rounded-full bg-blue-600/10 blur-[140px]"
+          className="absolute left-[-10%] top-[10%] h-[450px] w-[450px] rounded-full bg-violet-200/35 blur-[140px]"
         />
 
-        {/* Purple glow */}
+        {/* Secondary glow */}
         <motion.div
           animate={{
             x: [0, -70, 50, 0],
@@ -102,37 +101,11 @@ export const Contact = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-[-10%] right-[-10%] h-125 w-125 rounded-full bg-purple-600/10 blur-[150px]"
+          className="absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-violet-300/25 blur-[150px]"
         />
 
-        {/* Center glow */}
-        <motion.div
-          animate={{
-            opacity: [0.15, 0.3, 0.15],
-            scale: [0.9, 1.1, 0.9],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute left-1/2 top-1/2 h-87.5 w-87.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/5 blur-[120px]"
-        />
-
-        {/* Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: "70px 70px",
-          }}
-        />
-
-        {/* Noise */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02]" />
+        {/* Grid pattern matching Hero */}
+        <div className="absolute inset-0 opacity-[0.022] [background-image:linear-gradient(#51416F_1px,transparent_1px),linear-gradient(90deg,#51416F_1px,transparent_1px)] [background-size:72px_72px]" />
       </div>
 
       {/* ===================================================== */}
@@ -148,23 +121,22 @@ export const Contact = () => {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.35em] text-blue-400 backdrop-blur-md">
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-violet-500/20 bg-violet-500/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.35em] text-[#51416F] backdrop-blur-md">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.9)]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-500 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-600 shadow-[0_0_12px_rgba(147,51,234,0.5)]" />
             </span>
             Open to opportunities
           </div>
 
-          <h2 className="max-w-5xl text-5xl font-black uppercase leading-[0.85] tracking-tighter text-white md:text-8xl">
-            Let&apos;s
-            <br />
-            <span className="bg-linear-to-r from-blue-400 via-purple-400 to-fuchsia-500 bg-clip-text text-transparent">
+          <h2 className="max-w-5xl text-5xl font-extrabold uppercase leading-[0.85] tracking-tighter text-[#292333] md:text-8xl">
+            Let&apos;s {" "}
+            <span className="bg-gradient-to-r from-[#292333] via-[#51416F] to-[#9675D9] bg-clip-text text-transparent">
               connect
             </span>
           </h2>
 
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-slate-500 md:text-lg">
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-[#777381] md:text-lg">
             Looking for a developer, have a project in mind, or want to work
             together? Send me a message.
           </p>
@@ -182,10 +154,8 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/2.5 p-8 backdrop-blur-xl md:p-10 lg:col-span-4"
+            className="relative overflow-hidden rounded-[2.5rem] border border-violet-900/10 bg-white/60 p-8 shadow-sm backdrop-blur-xl md:p-10 lg:col-span-4"
           >
-            {/* Decorative number */}
-
             <div className="relative z-10 flex h-full flex-col">
               <div>
                 <motion.div
@@ -206,19 +176,8 @@ export const Contact = () => {
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="
-    relative mb-8
-    flex h-12 w-12
-    items-center justify-center
-    rounded-xl
-    border border-white/10
-    bg-white/2.5
-    text-blue-400
-    backdrop-blur-xl
-    shadow-[0_0_30px_rgba(59,130,246,0.08)]
-  "
+                  className="relative mb-8 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-500/20 bg-white text-violet-600 shadow-[0_0_30px_rgba(147,51,234,0.08)]"
                 >
-                  {/* Soft ambient glow */}
                   <motion.div
                     animate={{
                       opacity: [0.15, 0.3, 0.15],
@@ -229,15 +188,9 @@ export const Contact = () => {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className="
-      absolute inset-0
-      rounded-xl
-      bg-blue-500/20
-      blur-xl
-    "
+                    className="absolute inset-0 rounded-xl bg-violet-500/20 blur-xl"
                   />
 
-                  {/* Minimal status line */}
                   <motion.div
                     animate={{
                       opacity: [0.35, 1, 0.35],
@@ -247,43 +200,28 @@ export const Contact = () => {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className="
-      absolute top-2.5
-      h-px w-4
-      bg-blue-400
-    "
+                    className="absolute top-2.5 h-px w-4 bg-violet-600"
                   />
 
-                  {/* Center signal */}
                   <div className="relative z-10 flex items-center gap-0.75">
-                    <span className="h-1 w-1 rounded-full bg-blue-400" />
-                    <span className="h-1 w-1 rounded-full bg-purple-400" />
-                    <span className="h-1 w-1 rounded-full bg-blue-400" />
+                    <span className="h-1 w-1 rounded-full bg-violet-600" />
+                    <span className="h-1 w-1 rounded-full bg-violet-400" />
+                    <span className="h-1 w-1 rounded-full bg-violet-600" />
                   </div>
 
-                  {/* Bottom line */}
-                  <div
-                    className="
-    absolute bottom-2.5
-    h-px w-4
-    bg-linear-to-r
-    from-transparent
-    via-purple-400/60
-    to-transparent
-  "
-                  />
+                  <div className="absolute bottom-2.5 h-px w-4 bg-gradient-to-r from-transparent via-violet-400/60 to-transparent" />
                 </motion.div>
 
-                <p className="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">
+                <p className="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-[#51416F]">
                   Get in touch
                 </p>
 
-                <h3 className="text-3xl font-black uppercase leading-none tracking-tighter text-white">
+                <h3 className="text-3xl font-black uppercase leading-none tracking-tighter text-[#292333]">
                   Open to
                   <br />
                   new
                   <br />
-                  <span className="text-slate-600">opportunities.</span>
+                  <span className="text-[#777381]">opportunities.</span>
                 </h3>
               </div>
 
@@ -297,56 +235,52 @@ export const Contact = () => {
                 <StatusRow
                   label="Response"
                   value="Within 24h"
-                  icon={<Clock3 size={12} className="text-blue-400" />}
+                  icon={<Clock3 size={12} className="text-[#51416F]" />}
                 />
               </div>
 
               {/* SOCIALS */}
 
               <div className="mt-auto pt-12">
-  <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.3em] text-slate-700">
-    Find me online
-  </p>
+                <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.3em] text-[#777381]">
+                  Find me online
+                </p>
 
-  <div className="flex items-center gap-3">
-    {/* GitHub */}
-    <SocialLink
-      href="https://github.com/RasheedBShaik"
-      icon={
-        <Github
-          size={18}
-          strokeWidth={1.5}
-          className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-white"
-        />
-      }
-    />
+                <div className="flex items-center gap-3">
+                  <SocialLink
+                    href="https://github.com/rasheedbshaik"
+                    icon={
+                      <Github
+                        size={18}
+                        strokeWidth={1.5}
+                        className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#292333]"
+                      />
+                    }
+                  />
 
-    {/* LinkedIn */}
-    <SocialLink
-      href="https://linkedin.com/in/rasheedbshaik"
-      icon={
-        <Linkedin
-          size={18}
-          strokeWidth={1.5}
-          className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#0A66C2]"
-        />
-      }
-    />
+                  <SocialLink
+                    href="https://linkedin.com/in/rasheedbshaik"
+                    icon={
+                      <Linkedin
+                        size={18}
+                        strokeWidth={1.5}
+                        className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#0A66C2]"
+                      />
+                    }
+                  />
 
-    {/* Email */}
-    <SocialLink
-      href="mailto:rasheed.sk7337@gmail.com"
-      icon={
-        <Mail
-          size={18}
-          strokeWidth={1.5}
-          className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#EA4335]"
-        />
-      }
-    />
-  </div>
-</div>
-
+                  <SocialLink
+                    href="mailto:rasheed.sk7337@gmail.com"
+                    icon={
+                      <Mail
+                        size={18}
+                        strokeWidth={1.5}
+                        className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#EA4335]"
+                      />
+                    }
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -359,7 +293,7 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-black/40 p-8 backdrop-blur-xl md:p-10 lg:col-span-8"
+            className="relative overflow-hidden rounded-[2.5rem] border border-violet-900/10 bg-white/60 p-8 shadow-sm backdrop-blur-xl md:p-10 lg:col-span-8"
           >
             <AnimatePresence mode="wait">
               {!submitted ? (
@@ -371,24 +305,21 @@ export const Contact = () => {
                 >
                   {/* FORM HEADER */}
 
-                  <div className="mb-10 flex items-center justify-between border-b border-white/5 pb-6">
+                  <div className="mb-10 flex items-center justify-between border-b border-violet-900/5 pb-6">
                     <div>
-                      <p className="text-[9px] font-black uppercase tracking-[0.35em] text-blue-400">
+                      <p className="text-[9px] font-black uppercase tracking-[0.35em] text-[#51416F]">
                         Contact
                       </p>
 
-                      <h3 className="mt-2 text-xl font-black uppercase tracking-tighter text-white">
+                      <h3 className="mt-2 text-xl font-black uppercase tracking-tighter text-[#292333]">
                         Send me a message
                       </h3>
                     </div>
-
                   </div>
 
                   {/* FORM */}
 
                   <form onSubmit={handleSubmit} className="space-y-8">
-                    {/* WEB3FORMS */}
-
                     <input
                       type="hidden"
                       name="access_key"
@@ -471,7 +402,7 @@ export const Contact = () => {
                     {/* MESSAGE */}
 
                     <div>
-                      <label className="mb-3 block text-[9px] font-black uppercase tracking-[0.3em] text-slate-600">
+                      <label className="mb-3 block text-[9px] font-black uppercase tracking-[0.3em] text-[#777381]">
                         Message
                       </label>
 
@@ -482,10 +413,10 @@ export const Contact = () => {
                         placeholder="Tell me about the role, project, or idea..."
                         onFocus={() => setActiveField("message")}
                         onBlur={() => setActiveField(null)}
-                        className={`w-full resize-none rounded-3xl border bg-white/2.5 px-5 py-4 text-sm text-white outline-none transition-all placeholder:text-slate-700 ${
+                        className={`w-full resize-none rounded-3xl border bg-white/50 px-5 py-4 text-sm text-[#292333] outline-none transition-all placeholder:text-[#777381]/50 ${
                           activeField === "message"
-                            ? "border-blue-500/50 shadow-[0_0_30px_rgba(59,130,246,0.08)]"
-                            : "border-white/10"
+                            ? "border-violet-500/50 shadow-[0_0_30px_rgba(147,51,234,0.08)]"
+                            : "border-violet-900/10"
                         }`}
                       />
                     </div>
@@ -497,13 +428,13 @@ export const Contact = () => {
                       disabled={isSubmitting}
                       whileHover={!isSubmitting ? { scale: 1.01 } : {}}
                       whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                      className="group relative flex w-full items-center justify-between overflow-hidden rounded-2xl bg-white p-2 pl-6 text-black disabled:cursor-not-allowed disabled:opacity-70"
+                      className="group relative flex w-full items-center justify-between overflow-hidden rounded-2xl bg-[#292333] p-2 pl-6 text-white disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       <span className="relative z-10 text-[10px] font-black uppercase tracking-[0.3em]">
                         {isSubmitting ? "Sending..." : "Send message"}
                       </span>
 
-                      <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-black text-white transition-all duration-500 group-hover:bg-blue-600">
+                      <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600 text-white transition-all duration-500 group-hover:bg-white group-hover:text-[#292333]">
                         {isSubmitting ? (
                           <motion.span
                             animate={{ rotate: 360 }}
@@ -522,15 +453,11 @@ export const Contact = () => {
                         )}
                       </span>
 
-                      <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-blue-600 via-purple-500 to-fuchsia-500 transition-transform duration-500 group-hover:translate-x-0" />
+                      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-violet-600 via-violet-500 to-[#51416F] transition-transform duration-500 group-hover:translate-x-0" />
                     </motion.button>
                   </form>
                 </motion.div>
               ) : (
-                /* ================================================= */
-                /* SUCCESS MESSAGE */
-                /* ================================================= */
-
                 <SuccessMessage />
               )}
             </AnimatePresence>
@@ -546,12 +473,12 @@ export const Contact = () => {
           transition={{ delay: 0.5 }}
           className="mt-8 flex items-center justify-between px-2"
         >
-          <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-slate-700">
+          <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-[#777381]">
             React / Next.js / TypeScript
           </span>
 
-          <span className="flex items-center gap-2 font-mono text-[8px] uppercase tracking-[0.3em] text-slate-700">
-            <Check size={10} className="text-emerald-500" />
+          <span className="flex items-center gap-2 font-mono text-[8px] uppercase tracking-[0.3em] text-[#777381]">
+            <Check size={10} className="text-emerald-600" />
             Message protected
           </span>
         </motion.div>
@@ -569,10 +496,8 @@ function SuccessMessage() {
     <motion.div
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      className="flex min-h-155 flex-col items-center justify-center text-center"
+      className="flex min-h-[500px] flex-col items-center justify-center text-center"
     >
-      {/* Animated check */}
-
       <div className="relative mb-10">
         <motion.div
           initial={{ scale: 0 }}
@@ -584,7 +509,7 @@ function SuccessMessage() {
           }}
           className="flex h-24 w-24 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-400/10"
         >
-          <Check size={42} className="text-emerald-400" strokeWidth={2.5} />
+          <Check size={42} className="text-emerald-600" strokeWidth={2.5} />
         </motion.div>
 
         <motion.div
@@ -603,7 +528,7 @@ function SuccessMessage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="mb-4 text-[10px] font-black uppercase tracking-[0.4em] text-emerald-400"
+        className="mb-4 text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600"
       >
         Message received
       </motion.p>
@@ -612,11 +537,11 @@ function SuccessMessage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="text-4xl font-black uppercase tracking-tighter text-white md:text-6xl"
+        className="text-4xl font-black uppercase tracking-tighter text-[#292333] md:text-6xl"
       >
         Thanks for
         <br />
-        <span className="bg-linear-to-r from-blue-400 via-purple-400 to-fuchsia-500 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-[#292333] via-[#51416F] to-[#9675D9] bg-clip-text text-transparent">
           reaching out.
         </span>
       </motion.h3>
@@ -625,7 +550,7 @@ function SuccessMessage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="mt-6 max-w-md text-sm leading-relaxed text-slate-500"
+        className="mt-6 max-w-md text-sm leading-relaxed text-[#777381]"
       >
         I&apos;ve received your message and will get back to you as soon as
         possible.
@@ -635,9 +560,9 @@ function SuccessMessage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="mt-10 flex items-center gap-2 font-mono text-[8px] uppercase tracking-[0.3em] text-slate-700"
+        className="mt-10 flex items-center gap-2 font-mono text-[8px] uppercase tracking-[0.3em] text-[#777381]"
       >
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600" />
         Successfully sent
       </motion.div>
     </motion.div>
@@ -660,18 +585,18 @@ function StatusRow({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between border-b border-white/5 pb-4">
-      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600">
+    <div className="flex items-center justify-between border-b border-violet-900/5 pb-4">
+      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#777381]">
         {label}
       </span>
 
       <span
         className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest ${
-          green ? "text-emerald-400" : "text-white"
+          green ? "text-emerald-600" : "text-[#292333]"
         }`}
       >
         {green && (
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600" />
         )}
 
         {icon}
@@ -703,12 +628,13 @@ function SocialLink({
         flex h-12 w-12
         items-center justify-center
         rounded-xl
-        border border-white/10
-        bg-white/2.5
-        text-slate-500
+        border border-violet-900/10
+        bg-white/50
+        text-[#777381]
         backdrop-blur-xl
         transition-all duration-300
         hover:-translate-y-1
+        hover:border-violet-500/30
       "
     >
       <span
@@ -722,18 +648,15 @@ function SocialLink({
           group-hover:scale-100
           group-hover:opacity-100
           group-hover:blur-none
-          border border-white/10
-          bg-white/3
+          border border-violet-500/20
+          bg-violet-500/5
         "
       />
 
-      <span className="relative z-10">
-        {icon}
-      </span>
+      <span className="relative z-10">{icon}</span>
     </a>
   );
 }
-
 
 /* ========================================================= */
 /* INPUT FIELD */
@@ -760,7 +683,7 @@ function Field({
 
   return (
     <div>
-      <label className="mb-3 block text-[9px] font-black uppercase tracking-[0.3em] text-slate-600">
+      <label className="mb-3 block text-[9px] font-black uppercase tracking-[0.3em] text-[#777381]">
         {label}
       </label>
 
@@ -771,10 +694,10 @@ function Field({
         placeholder={placeholder}
         onFocus={() => setActiveField(name)}
         onBlur={() => setActiveField(null)}
-        className={`w-full rounded-2xl border bg-white/2.5 px-5 py-4 text-sm text-white outline-none transition-all placeholder:text-slate-700 ${
+        className={`w-full rounded-2xl border bg-white/50 px-5 py-4 text-sm text-[#292333] outline-none transition-all placeholder:text-[#777381]/50 ${
           active
-            ? "border-blue-500/50 shadow-[0_0_30px_rgba(59,130,246,0.08)]"
-            : "border-white/10"
+            ? "border-violet-500/50 shadow-[0_0_30px_rgba(147,51,234,0.08)]"
+            : "border-violet-900/10"
         }`}
       />
     </div>
@@ -800,7 +723,7 @@ function ChoiceGroup({
 }) {
   return (
     <div>
-      <label className="mb-3 block text-[9px] font-black uppercase tracking-[0.3em] text-slate-600">
+      <label className="mb-3 block text-[9px] font-black uppercase tracking-[0.3em] text-[#777381]">
         {label}
       </label>
 
@@ -815,14 +738,14 @@ function ChoiceGroup({
               onClick={() => onChange(option)}
               className={`relative overflow-hidden rounded-xl border px-4 py-3 text-[9px] font-bold uppercase tracking-widest transition-all ${
                 selected
-                  ? "border-blue-500/50 bg-blue-500/10 text-blue-300"
-                  : "border-white/10 bg-white/2 text-slate-600 hover:border-white/20 hover:text-slate-300"
+                  ? "border-violet-500/50 bg-violet-500/10 text-violet-700"
+                  : "border-violet-900/10 bg-white/30 text-[#777381] hover:border-violet-900/20 hover:text-[#292333]"
               }`}
             >
               {selected && (
                 <motion.div
                   layoutId={`${name}-selected`}
-                  className="absolute inset-0 bg-blue-500/5"
+                  className="absolute inset-0 bg-violet-500/5"
                 />
               )}
 

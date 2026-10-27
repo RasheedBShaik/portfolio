@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import {
   Terminal,
   Globe,
@@ -9,238 +9,282 @@ import {
   Cpu,
   Layout,
   Layers,
-  Sparkles,
   MoveRight,
 } from "lucide-react";
 import Link from "next/link";
 
+const technologies = [
+  {
+    label: "Frontend",
+    value: "React / Next.js / TypeScript",
+    color: "from-violet-600 to-purple-400",
+  },
+  {
+    label: "Backend",
+    value: "Node.js / Python",
+    color: "from-emerald-500 to-teal-400",
+  },
+  {
+    label: "Database",
+    value: "MongoDB / PostgreSQL",
+    color: "from-orange-500 to-amber-400",
+  },
+  {
+    label: "Creative",
+    value: "Three.js / GSAP / Motion",
+    color: "from-purple-500 to-violet-400",
+  },
+];
+
+const features = [
+  {
+    icon: Palette,
+    title: "Frontend Engineering",
+    desc: "Building responsive, accessible interfaces with React, Next.js, TypeScript, and modern UI technologies.",
+    accent: "group-hover:text-violet-600 group-hover:border-violet-300",
+  },
+  {
+    icon: Cpu,
+    title: "Backend & APIs",
+    desc: "Developing application logic, APIs, data flows, and backend services with Node.js and Python.",
+    accent: "group-hover:text-emerald-600 group-hover:border-emerald-300",
+  },
+  {
+    icon: Layout,
+    title: "Full-Stack Development",
+    desc: "Connecting frontend experiences with reliable backend systems to build complete, production-ready applications.",
+    accent: "group-hover:text-purple-600 group-hover:border-purple-300",
+  },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
 export default function AboutMe() {
+  const reduce = useReducedMotion();
+
+  const reveal = {
+    hidden: { opacity: 0, y: reduce ? 0 : 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <section
       id="about"
-      className="relative w-full py-24 px-6 font-syne bg-[#020204]"
+      className="relative w-full overflow-hidden bg-[#FAF9F6] px-4 py-20 font-syne text-[#292333] selection:bg-violet-200 sm:px-8 sm:py-24"
     >
-      <div className="mx-auto max-w-6xl relative z-10">
-        {/* Section Header */}
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute -right-32 top-20 h-80 w-80 rounded-full bg-violet-200/25 blur-[100px]" />
+      <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-purple-200/20 blur-[100px]" />
+
+      <div className="relative z-10 mx-auto max-w-6xl">
+        {/* Section heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 flex flex-col items-start gap-4 uppercase"
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-10 flex flex-col items-start gap-5 sm:mb-14"
         >
           <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.7,
-              filter: "blur(8px)",
-            }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-              filter: "blur(0px)",
-            }}
+            initial={reduce ? false : { opacity: 0, scale: 0.94, y: 6 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-              duration: 0.8,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            whileHover={{
-              scale: 1.05,
-              borderColor: "rgba(99,102,241,0.5)",
-              boxShadow:
-                "0 0 20px rgba(79,70,229,0.15), inset 0 0 20px rgba(6,182,212,0.05)",
-            }}
-            className="group relative flex items-center gap-3 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-blue-400 backdrop-blur-sm"
+            transition={{ duration: 0.5, ease }}
+            whileHover={reduce ? undefined : { y: -2 }}
+            className="inline-flex items-center gap-2.5 rounded-full border border-[#E5E1E9] bg-white/80 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#51416F] shadow-sm"
           >
-            {/* Moving energy beam */}
             <motion.span
-              className="absolute inset-y-0 -left-[40%] w-[35%] skew-x-[-25deg] bg-linear-to-r from-transparent via-cyan-400/30 to-transparent"
-              animate={{
-                left: ["-40%", "120%"],
-              }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="inline-flex"
+              animate={reduce ? undefined : { rotate: 360 }}
+            >
+              <Layers size={15} className="text-violet-600" />
+            </motion.span>
+            Full Stack Developer
+            <motion.span
+              animate={reduce ? undefined : { opacity: [1, 0.45, 1] }}
               transition={{
-                duration: 2.2,
+                duration: 2.5,
                 repeat: Infinity,
-                repeatDelay: 1.2,
                 ease: "easeInOut",
               }}
+              className="h-1.5 w-1.5 rounded-full bg-emerald-500"
             />
-
-            {/* Single orbital system */}
-            <motion.span
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 2.8,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="relative flex h-4 w-4 shrink-0 items-center justify-center"
-            >
-              {/* Outer orbit */}
-              <span className="absolute inset-0 rounded-full border border-blue-400/30 border-t-cyan-400 border-r-indigo-400" />
-
-              {/* Inner orbit */}
-              <motion.span
-                animate={{ rotate: -360 }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-0.75 rounded-full border border-fuchsia-400/30 border-b-fuchsia-400"
-              />
-
-              {/* One core */}
-              <motion.span
-                animate={{
-                  scale: [0.8, 1.25, 0.8],
-                  opacity: [0.6, 1, 0.6],
-                  boxShadow: [
-                    "0 0 4px rgba(6,182,212,0.5)",
-                    "0 0 14px rgba(6,182,212,1)",
-                    "0 0 4px rgba(6,182,212,0.5)",
-                  ],
-                }}
-                transition={{
-                  duration: 1.1,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="h-1.5 w-1.5 rounded-full bg-cyan-300"
-              />
-            </motion.span>
-
-            {/* Text */}
-            <motion.span
-              animate={{
-                color: ["#60a5fa", "#22d3ee", "#a78bfa", "#60a5fa"],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="relative z-10"
-            >
-              Full Stack Developer
-            </motion.span>
           </motion.div>
 
-          <h2 className="text-5xl font-extrabold tracking-tight text-white md:text-7xl">
+          <h2 className="text-4xl font-extrabold leading-[1.12] tracking-[-0.055em] sm:text-5xl md:text-7xl">
             Building{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-indigo-400 to-purple-500">
+            <span className="bg-gradient-to-r from-[#51416F] via-violet-600 to-[#9675D9] bg-clip-text text-transparent">
               Software
             </span>
             <br />
-            Designing Experiences
+            Designing Experiences<span className="text-violet-500">.</span>
           </h2>
+
+          <p className="max-w-2xl text-sm leading-7 text-[#777381] sm:text-base sm:leading-8">
+            I turn ideas into thoughtful digital experiences through clean code,
+            modern technologies, and a focus on performance and usability.
+          </p>
         </motion.div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Main Bio Card */}
+        {/* Main cards */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
+          {/* Developer introduction */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="group relative col-span-1 md:col-span-8 overflow-hidden rounded-[2.5rem] border border-white/10 bg-linear-to-br from-white/[0.07] to-transparent p-8 md:p-12 transition-all hover:border-blue-500/30"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, ease }}
+            whileHover={reduce ? undefined : { y: -3 }}
+            className="group relative overflow-hidden rounded-3xl border border-[#E8E2EF] bg-white/75 p-6 shadow-[0_8px_35px_rgba(41,35,51,0.035)] transition-all duration-300 hover:border-violet-200 hover:shadow-[0_14px_40px_rgba(81,65,111,0.07)] sm:rounded-[2rem] sm:p-9 md:col-span-7 lg:p-10"
           >
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/10 blur-[80px] group-hover:bg-blue-500/20 transition-all duration-700" />
+            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-violet-200/30 blur-[75px] transition-colors duration-500 group-hover:bg-violet-300/35" />
 
-            <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-white tracking-tighter uppercase">
-              <Terminal className="text-blue-400" size={24} />
+            <h3 className="relative mb-6 flex items-center gap-3 text-lg font-extrabold uppercase tracking-[-0.03em] sm:text-xl">
+              <motion.span
+                whileHover={reduce ? undefined : { rotate: -6, scale: 1.05 }}
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-violet-100 bg-violet-50 text-violet-700"
+              >
+                <Terminal size={21} />
+              </motion.span>
               The Software Developer
             </h3>
 
-            <div className="space-y-6 text-lg md:text-xl leading-relaxed text-slate-400">
+            <div className="relative space-y-5 text-base leading-7 text-[#777381] sm:text-lg sm:leading-8">
               <p>
                 I am a{" "}
-                <span className="text-white font-semibold">
+                <span className="font-semibold text-[#292333]">
                   Full-Stack Developer
                 </span>{" "}
                 focused on building fast, scalable software and modern web
                 applications. I work across the stack with{" "}
-                <span className="text-blue-400 font-medium group-hover:italic transition-all duration-300 underline underline-offset-4 decoration-blue-500/30">
+                <span className="font-medium text-violet-700">
                   React, Next.js, TypeScript, Node.js, and Python.
                 </span>
               </p>
 
               <p>
                 I enjoy turning ideas into{" "}
-                <span className="text-white">
-                  reliable, intuitive, and high-performance products
+                <span className="font-semibold text-[#292333]">
+                  reliable, intuitive, high-performance products
                 </span>
                 , from polished frontend interfaces to backend logic and
                 complete application experiences.
               </p>
             </div>
 
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <Globe size={14} className="text-blue-500" /> India /
-                Remote-Available
+            <div className="relative mt-8 flex flex-wrap items-center gap-x-5 gap-y-4 border-t border-[#EEEAF2] pt-6">
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.13em] text-[#777381] sm:text-xs">
+                <motion.svg
+                  width={15}
+                  height={15}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.25}
+                  strokeLinecap="round"
+                  className="text-violet-500"
+                >
+                  {/* Fixed globe outline */}
+                  <circle cx="12" cy="12" r="10" />
+
+                  {/* Fixed latitude lines */}
+                  <ellipse cx="12" cy="12" rx="10" ry="4" />
+                  <ellipse cx="12" cy="12" rx="10" ry="8" />
+
+                  {/* Rotating longitude lines */}
+                  <motion.g
+                    animate={
+                      reduce
+                        ? undefined
+                        : {
+                            scaleX: [1, 0.08, 1, 0.08, 1],
+                            x: [0, 0, 0, 0, 0],
+                          }
+                    }
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    style={{
+                      transformOrigin: "12px 12px",
+                    }}
+                  >
+                    <ellipse cx="12" cy="12" rx="4" ry="10" />
+                  </motion.g>
+
+                  {/* Secondary longitude line for depth */}
+                  {!reduce && (
+                    <motion.ellipse
+                      cx="12"
+                      cy="12"
+                      rx="4"
+                      ry="10"
+                      strokeOpacity={0.45}
+                      animate={{
+                        scaleX: [0.08, 1, 0.08, 1, 0.08],
+                      }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    />
+                  )}
+                </motion.svg>
+                India / Remote
               </div>
 
-              <div className="h-4 w-px bg-white/10 hidden md:block" />
-
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-500 animate-pulse">
-                <Zap size={14} /> Open to Opportunities
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.13em] text-emerald-700 sm:text-xs">
+                <Zap size={15} />
+                Open to Opportunities
               </div>
             </div>
           </motion.div>
 
-          {/* Tech Stack Sidebar */}
+          {/* Technology stack */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="col-span-1 md:col-span-4 rounded-[2.5rem] border border-white/10 bg-white/3 p-8 relative overflow-hidden group backdrop-blur-sm"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: reduce ? 0 : 0.12, ease }}
+            whileHover={reduce ? undefined : { y: -3 }}
+            className="relative overflow-hidden rounded-3xl border border-[#E8E2EF] bg-white/65 p-6 shadow-[0_8px_35px_rgba(41,35,51,0.035)] transition-shadow duration-300 hover:shadow-[0_14px_40px_rgba(81,65,111,0.07)] sm:rounded-[2rem] sm:p-8 md:col-span-5"
           >
-            <h3 className="mb-8 text-xl font-black text-white uppercase tracking-tighter flex items-center gap-2">
-              <Layers size={20} className="text-purple-400" />
+            <h3 className="mb-8 flex items-center gap-3 text-lg font-extrabold uppercase tracking-[-0.03em]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-violet-100 bg-violet-50 text-violet-700">
+                <Layers size={21} />
+              </span>
               The Stack
             </h3>
 
             <div className="space-y-7">
-              {[
-                {
-                  label: "Frontend",
-                  val: "React / Next.js / TypeScript",
-                  color: "from-blue-500 to-cyan-400",
-                },
-                {
-                  label: "Backend",
-                  val: "Node.js / Python",
-                  color: "from-emerald-500 to-teal-400",
-                },
-                {
-                  label: "Database",
-                  val: "MongoDB / PostgreSQL",
-                  color: "from-orange-500 to-yellow-400",
-                },
-                {
-                  label: "Creative",
-                  val: "Three.js / GSAP / Motion",
-                  color: "from-purple-500 to-violet-400",
-                },
-              ].map((item) => (
-                <div key={item.label} className="group/item">
-                  <div className="flex justify-between items-end mb-2">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">
+              {technologies.map((item, index) => (
+                <div key={item.label}>
+                  <div className="mb-2 flex flex-wrap items-end justify-between gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#898391]">
                       {item.label}
                     </span>
-
-                    <span className="text-[11px] font-medium text-white/80">
-                      {item.val}
+                    <span className="text-right text-xs font-medium text-[#51416F]">
+                      {item.value}
                     </span>
                   </div>
 
-                  <div className="h-0.75 w-full bg-white/5 rounded-full overflow-hidden">
+                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#EEEAF2]">
                     <motion.div
-                      initial={{ width: 0 }}
+                      initial={{ width: reduce ? "100%" : "0%" }}
                       whileInView={{ width: "100%" }}
-                      transition={{ duration: 1.5, ease: "circOut" }}
-                      className={`h-full bg-linear-to-r ${item.color}`}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: reduce ? 0 : 0.9,
+                        delay: reduce ? 0 : index * 0.12,
+                        ease: "circOut",
+                      }}
+                      className={`h-full rounded-full bg-gradient-to-r ${item.color}`}
                     />
                   </div>
                 </div>
@@ -248,84 +292,59 @@ export default function AboutMe() {
             </div>
 
             <Link
-              href="https://github.com/RasheedBShaik"
+              href="https://github.com/rasheedbshaik"
               target="_blank"
               rel="noopener noreferrer"
+              className="group/btn mt-9 flex w-full items-center justify-between rounded-xl bg-[#292333] px-5 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-violet-700"
             >
-              <button className="mt-10 w-full group/btn flex items-center cursor-pointer justify-center gap-2 rounded-2xl bg-white text-black py-4 font-bold text-sm transition-all hover:bg-blue-400">
-                View Github
-                <MoveRight
-                  size={16}
-                  className="transition-transform group-hover/btn:translate-x-1"
-                />
-              </button>
+              View GitHub
+              <MoveRight
+                size={17}
+                className="transition-transform duration-300 group-hover/btn:translate-x-1"
+              />
             </Link>
           </motion.div>
 
-          {/* Feature Grid */}
-          <div className="col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <FeatureBox
-              icon={<Palette size={24} />}
-              title="Frontend Engineering"
-              desc="Building responsive, accessible interfaces with React, Next.js, TypeScript, and modern UI technologies."
-              accent="pink"
-            />
+          {/* Feature cards */}
+          <div className="grid grid-cols-1 gap-5 md:col-span-12 md:grid-cols-3">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
 
-            <FeatureBox
-              icon={<Cpu size={24} />}
-              title="Backend & APIs"
-              desc="Developing application logic, APIs, data flows, and backend services with Node.js and Python."
-              accent="blue"
-            />
+              return (
+                <motion.div
+                  key={feature.title}
+                  variants={reveal}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: reduce ? 0 : index * 0.1,
+                    ease,
+                  }}
+                  whileHover={reduce ? undefined : { y: -5 }}
+                  className="group rounded-3xl border border-[#E8E2EF] bg-white/70 p-6 shadow-[0_5px_25px_rgba(41,35,51,0.025)] transition-all duration-300 hover:border-violet-200 hover:bg-white hover:shadow-[0_12px_35px_rgba(81,65,111,0.06)] sm:p-7"
+                >
+                  <motion.div
+                    whileHover={reduce ? undefined : { scale: 1.06 }}
+                    className={`mb-5 inline-flex rounded-xl border border-[#E8E2EF] bg-[#FAF9F6] p-3 text-[#51416F] transition-colors duration-300 ${feature.accent}`}
+                  >
+                    <Icon size={23} />
+                  </motion.div>
 
-            <FeatureBox
-              icon={<Layout size={24} />}
-              title="Full-Stack Development"
-              desc="Connecting frontend experiences with reliable backend systems to build complete, production-ready applications."
-              accent="purple"
-            />
+                  <h4 className="mb-3 text-lg font-bold tracking-[-0.035em] text-[#292333]">
+                    {feature.title}
+                  </h4>
+
+                  <p className="text-sm leading-7 text-[#777381] transition-colors duration-300 group-hover:text-[#625B70]">
+                    {feature.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function FeatureBox({
-  icon,
-  title,
-  desc,
-  accent,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-  accent: "pink" | "blue" | "purple";
-}) {
-  const accents = {
-    pink: "group-hover:text-pink-400 group-hover:border-pink-500/50",
-    blue: "group-hover:text-blue-400 group-hover:border-blue-500/50",
-    purple: "group-hover:text-purple-400 group-hover:border-purple-500/50",
-  };
-
-  return (
-    <motion.div
-      whileHover={{ y: -8 }}
-      className="group relative rounded-4xl border border-white/5 bg-white/2 p-8 transition-all hover:bg-white/5"
-    >
-      <div
-        className={`mb-4 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 transition-all ${accents[accent]}`}
-      >
-        {icon}
-      </div>
-
-      <h4 className="mb-2 font-bold text-white text-xl tracking-tight">
-        {title}
-      </h4>
-
-      <p className="text-sm leading-relaxed text-slate-500 group-hover:text-slate-300 transition-colors">
-        {desc}
-      </p>
-    </motion.div>
   );
 }

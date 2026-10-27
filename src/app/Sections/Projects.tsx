@@ -1,184 +1,148 @@
+
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { Tooltip, Typography, ConfigProvider } from "antd";
 import {
   Github,
   ExternalLink,
   ShieldCheck,
   ArrowRight,
-  Cpu,
+  Layers,
 } from "lucide-react";
 import Link from "next/link";
 import { projectData } from "../../../projectsData";
 
 const { Title, Text } = Typography;
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Projects() {
-  // Featured projects shown on the homepage
+  const reduce = useReducedMotion();
   const featured = projectData.slice(0, 4);
 
   return (
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#3b82f6",
+          colorPrimary: "#6D4CC3",
+          borderRadius: 12,
         },
       }}
     >
       <section
         id="projects"
-        className="relative w-full bg-[#050505] py-32 px-6 font-syne overflow-hidden"
+        className="relative w-full overflow-hidden bg-[#FAF9F6] px-4 py-20 font-syne text-[#292333] selection:bg-violet-200 sm:px-8 sm:py-24"
       >
-        {/* Background Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
-          <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-175 h-100 rounded-full bg-blue-600/4 blur-[140px]" />
-          <div className="absolute bottom-0 right-[-10%] w-100 h-100 rounded-full bg-purple-600/4 blur-[140px]" />
-        </div>
+        {/* Ambient background */}
+        <div className="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-violet-200/25 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-purple-200/20 blur-[100px]" />
 
-        <div className="mx-auto max-w-6xl relative z-10">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+        <div className="relative z-10 mx-auto max-w-6xl">
+          {/* Section heading */}
+          <div className="mb-10 flex flex-col justify-between gap-6 sm:mb-14 md:flex-row md:items-end">
             <motion.div
-              initial={{
-                opacity: 0,
-                x: -40,
-                filter: "blur(8px)",
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-                filter: "blur(0px)",
-              }}
+              initial={{ opacity: 0, y: reduce ? 0 : 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.8,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="space-y-4"
+              transition={{ duration: 0.6, ease }}
+              className="space-y-5"
             >
-              {/* Status Badge */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={reduce ? false : { opacity: 0, scale: 0.94 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{
-                  delay: 0.15,
-                  duration: 0.6,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-blue-400"
+                transition={{ duration: 0.5, ease }}
+                whileHover={reduce ? undefined : { y: -2 }}
+                className="inline-flex items-center gap-2.5 rounded-full border border-[#E5E1E9] bg-white/80 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#51416F] shadow-sm"
               >
-                {/* Moving beam */}
                 <motion.span
-                  className="absolute inset-y-0 -left-1/2 w-1/3 skew-x-[-25deg] bg-linear-to-r from-transparent via-cyan-400/20 to-transparent"
-                  animate={{
-                    left: ["-50%", "130%"],
+                  animate={reduce ? undefined : { rotate: 360 }}
+                  transition={{
+                    duration: 12,
+                    repeat: Infinity,
+                    ease: "linear",
                   }}
+                  className="inline-flex"
+                >
+                  <Layers size={15} className="text-violet-600" />
+                </motion.span>
+
+                Selected Projects
+
+                <motion.span
+                  animate={reduce ? undefined : { opacity: [1, 0.4, 1] }}
                   transition={{
                     duration: 2.5,
                     repeat: Infinity,
-                    repeatDelay: 2,
                     ease: "easeInOut",
                   }}
+                  className="h-1.5 w-1.5 rounded-full bg-emerald-500"
                 />
-
-                {/* Single energy core */}
-                <motion.span
-                  animate={{
-                    scale: [0.8, 1.2, 0.8],
-                    boxShadow: [
-                      "0 0 4px rgba(59,130,246,0.4)",
-                      "0 0 14px rgba(6,182,212,0.9)",
-                      "0 0 4px rgba(59,130,246,0.4)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 1.4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="relative h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300"
-                />
-
-                <span className="relative z-10">
-                  Selected Projects
-                </span>
               </motion.div>
 
               <Title
                 level={1}
-                className="text-white! m-0! text-6xl! md:text-8xl! font-black! uppercase tracking-tighter leading-none"
+                className="m-0! text-4xl! font-extrabold! uppercase leading-[1.08]! tracking-[-0.055em]! text-[#292333]! sm:text-5xl! md:text-7xl!"
               >
                 Selected{" "}
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-indigo-500">
-                  works
+                <span className="bg-gradient-to-r from-[#51416F] via-violet-600 to-[#9675D9] bg-clip-text text-transparent">
+                  Works
                 </span>
               </Title>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: reduce ? 0 : 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
-                delay: 0.3,
-                duration: 0.7,
+                duration: 0.5,
+                delay: reduce ? 0 : 0.12,
+                ease,
               }}
+              className="max-w-xs md:pb-2"
             >
-              <Text className="text-slate-500! uppercase text-[10px] font-bold tracking-[0.2em] md:text-right max-w-57.5 block">
-                Real projects built with modern web technologies.
+              <Text className="block! text-xs! font-medium! leading-6! text-[#777381]! sm:text-sm! md:text-right!">
+                A selection of projects built with modern web technologies,
+                thoughtful interfaces, and a focus on usability.
               </Text>
             </motion.div>
           </div>
 
-          {/* Project List */}
-          <div className="flex flex-col border-t border-white/10">
+          {/* Project cards */}
+          <div className="space-y-4">
             {featured.map((project, index) => (
               <ProjectRow
                 key={project.title ?? index}
                 project={project}
                 index={index}
+                reduce={!!reduce}
               />
             ))}
           </div>
 
-          {/* ALL PROJECTS */}
+          {/* All projects */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: reduce ? 0 : 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{
-              duration: 0.7,
-              ease: [0.16, 1, 0.3, 1],
+              duration: 0.55,
+              delay: reduce ? 0 : 0.1,
+              ease,
             }}
-            className="mt-16 flex justify-center"
+            className="mt-10 flex justify-center sm:mt-14"
           >
             <Link
               href="/projects"
-              className="group relative flex items-center gap-6 px-10 py-6 rounded-full bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] overflow-hidden transition-all hover:pr-14"
+              className="group flex items-center gap-5 rounded-xl bg-[#292333] px-6 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white shadow-[0_8px_24px_rgba(41,35,51,0.1)] transition-all duration-300 hover:bg-violet-700 sm:px-8"
             >
-              <span className="relative z-10">
-                View All Projects
-              </span>
-
+              View All Projects
               <ArrowRight
-                size={18}
-                className="relative z-10 transition-transform duration-300 group-hover:translate-x-2"
+                size={17}
+                className="transition-transform duration-300 group-hover:translate-x-1"
               />
-
-              {/* Gradient */}
-              <div className="absolute inset-0 bg-linear-to-r from-blue-600 via-purple-600 to-fuchsia-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* White layer */}
-              <div className="absolute inset-0 bg-white group-hover:opacity-0 transition-opacity duration-500" />
             </Link>
           </motion.div>
         </div>
@@ -190,199 +154,147 @@ export default function Projects() {
 function ProjectRow({
   project,
   index,
+  reduce,
 }: {
   project: any;
   index: number;
+  reduce: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      initial={{
-        opacity: 0,
-        y: 25,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
+    <motion.article
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: reduce ? 0 : 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12 }}
       transition={{
-        delay: index * 0.12,
-        duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
+        duration: 0.55,
+        delay: reduce ? 0 : index * 0.08,
+        ease,
       }}
-      className="group relative flex flex-col md:flex-row md:items-center justify-between py-12 border-b border-white/5 transition-all cursor-pointer"
+      whileHover={reduce ? undefined : { y: -3 }}
+      className={`group relative overflow-hidden rounded-3xl border bg-white/75 p-5 shadow-[0_5px_25px_rgba(41,35,51,0.025)] transition-colors duration-300 sm:p-7 lg:p-8 ${
+        isHovered
+          ? "border-violet-200 shadow-[0_12px_35px_rgba(81,65,111,0.07)]"
+          : "border-[#E8E2EF]"
+      }`}
     >
-      {/* Hover Energy */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            layoutId="projectHoverGlow"
-            className="absolute inset-0 z-0 overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="absolute inset-0 bg-linear-to-r from-blue-500/6 via-purple-500/2.5 to-transparent" />
+      {/* Subtle hover glow */}
+      <motion.div
+        animate={{ opacity: isHovered && !reduce ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-violet-200/40 blur-[80px]"
+      />
+
+      <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        {/* Project details */}
+        <div className="flex min-w-0 flex-1 flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
+          <div className="flex shrink-0 items-center gap-4">
+            <span className="text-xs font-bold tabular-nums text-violet-600">
+              {String(index + 1).padStart(2, "0")}
+            </span>
 
             <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: "200%" }}
-              transition={{
-                duration: 1.2,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-y-0 w-1/3 bg-linear-to-r from-transparent via-blue-400/8 to-transparent skew-x-[-20deg]"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+              animate={
+                isHovered && !reduce
+                  ? { scale: 1.06, rotate: -4 }
+                  : { scale: 1, rotate: 0 }
+              }
+              transition={{ duration: 0.3, ease }}
+              className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#E8E2EF] bg-[#FAF9F6] text-[#51416F] transition-colors duration-300 group-hover:border-violet-200 group-hover:bg-violet-50"
+            >
+              {project.icon}
+            </motion.div>
+          </div>
 
-      {/* Project Content */}
-      <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-8 md:gap-16 grow">
-        {/* ID + Icon */}
-        <div className="flex items-center gap-6 min-w-25">
-          <motion.span
-            animate={
-              isHovered
-                ? {
-                    color: "#60a5fa",
-                    x: 4,
-                  }
-                : {
-                    color: "#3b82f6",
-                    x: 0,
-                  }
-            }
-            className="font-black text-sm tabular-nums"
-          >
-            0{index + 1}
-          </motion.span>
+          <div className="min-w-0 flex-1">
+            <motion.h3
+              animate={
+                isHovered && !reduce ? { x: 3 } : { x: 0 }
+              }
+              transition={{ duration: 0.25, ease }}
+              className="mb-3 break-words text-2xl font-extrabold uppercase leading-tight tracking-[-0.045em] text-[#292333] sm:text-3xl lg:text-4xl"
+            >
+              {project.title}
+            </motion.h3>
 
-          <motion.div
-            animate={
-              isHovered
-                ? {
-                    rotate: 360,
-                    scale: 1.08,
-                  }
-                : {
-                    rotate: 0,
-                    scale: 1,
-                  }
-            }
-            transition={{
-              duration: 0.6,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="p-3 rounded-2xl bg-white/5 text-slate-500 group-hover:text-blue-400 group-hover:bg-blue-500/10 transition-colors duration-500"
-          >
-            {project.icon}
-          </motion.div>
-        </div>
-
-        {/* Project Information */}
-        <div className="space-y-2">
-          <motion.h3
-            animate={
-              isHovered
-                ? {
-                    x: 6,
-                  }
-                : {
-                    x: 0,
-                  }
-            }
-            transition={{
-              duration: 0.3,
-            }}
-            className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter group-hover:italic transition-all"
-          >
-            {project.title}
-          </motion.h3>
-
-          <div className="flex flex-wrap gap-x-4 gap-y-2">
-            {project.stack.map((stack: string) => (
-              <span
-                key={stack}
-                className="text-[9px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1"
-              >
-                <span className="h-1 w-1 bg-blue-500 rounded-full" />
-                {stack}
-              </span>
-            ))}
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map((stack: string) => (
+                <span
+                  key={stack}
+                  className="rounded-lg border border-[#E8E2EF] bg-[#FAF9F6] px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#777381] transition-colors duration-200 group-hover:border-violet-100"
+                >
+                  {stack}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Actions */}
-      <div className="relative z-10 flex items-center gap-4 mt-8 md:mt-0">
-        {/* Credentials */}
-        {project.creds && (
-          <Tooltip
-            title={project.creds}
-            color="#3b82f6"
-            placement="top"
-          >
-            <motion.div
-              whileHover={{
-                scale: 1.08,
-                rotate: -5,
-              }}
-              className="p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 text-blue-400 cursor-help hover:bg-blue-500/20 transition-colors"
+        {/* Project actions */}
+        <div className="relative z-10 flex flex-wrap items-center gap-2 sm:gap-3 lg:shrink-0">
+          {project.creds && (
+            <Tooltip
+              title={project.creds}
+              color="#51416F"
+              placement="top"
             >
-              <ShieldCheck size={20} />
-            </motion.div>
-          </Tooltip>
-        )}
+              <motion.div
+                whileHover={reduce ? undefined : { scale: 1.05 }}
+                className="flex h-11 w-11 cursor-help items-center justify-center rounded-xl border border-violet-100 bg-violet-50 text-violet-700 transition-colors hover:bg-violet-100"
+              >
+                <ShieldCheck size={19} />
+              </motion.div>
+            </Tooltip>
+          )}
 
-        <div className="flex gap-2">
-          {/* GitHub */}
           {project.github ? (
             <motion.a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{
-                y: -3,
-                scale: 1.04,
-              }}
-              className="p-4 rounded-2xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-white/40 transition-all"
+              aria-label={`View ${project.title} source code on GitHub`}
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={reduce ? undefined : { scale: 0.97 }}
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#E5E1E9] bg-white text-[#625B70] transition-colors duration-300 hover:border-violet-200 hover:bg-violet-50 hover:text-violet-700"
             >
-              <Github size={20} />
+              <Github size={19} />
             </motion.a>
           ) : (
-            <Tooltip
-              title="Source Code Protected"
-              color="#ef4444"
-            >
-              <div className="p-4 rounded-2xl bg-white/5 border border-red-500/20 text-red-400/60 cursor-not-allowed">
-                <ShieldCheck size={20} />
+            <Tooltip title="Source Code Protected" color="#51416F">
+              <div
+                aria-label="Source code protected"
+                className="flex h-11 w-11 cursor-not-allowed items-center justify-center rounded-xl border border-[#E8E2EF] bg-[#FAF9F6] text-[#A39BAF]"
+              >
+                <ShieldCheck size={19} />
               </div>
             </Tooltip>
           )}
 
-          {/* Live */}
-          <motion.a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{
-              scale: 1.03,
-            }}
-            className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-xl shadow-blue-500/10"
-          >
-            Live
-            <ExternalLink size={14} />
-          </motion.a>
+          {project.live ? (
+            <motion.a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={reduce ? undefined : { scale: 0.98 }}
+              className="group/live inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#292333] px-4 text-[10px] font-bold uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-violet-700 sm:px-5"
+            >
+              Live Demo
+              <ExternalLink
+                size={14}
+                className="transition-transform duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5"
+              />
+            </motion.a>
+          ) : (
+            <span className="inline-flex h-11 items-center rounded-xl border border-[#E8E2EF] bg-[#FAF9F6] px-4 text-[10px] font-bold uppercase tracking-[0.12em] text-[#898391]">
+              Coming Soon
+            </span>
+          )}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }

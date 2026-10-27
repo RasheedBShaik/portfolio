@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -10,232 +11,86 @@ import {
   Database,
   Server,
   Terminal,
-  Box,
   Code2,
   MousePointer2,
-  Globe2,
 } from "lucide-react";
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const frontend = ["TypeScript", "Next.js", "React", "Tailwind CSS", "Motion"];
+const backend = ["Node.js", "Python", "REST APIs"];
+const tools = [
+  { n: "MongoDB", s: "Database" },
+  { n: "PostgreSQL", s: "Database" },
+  { n: "Git", s: "Version Control" },
+  { n: "Vercel", s: "Deployment" },
+];
+
 export default function Skills() {
-  const shouldReduceMotion = useReducedMotion();
+  const reduce = useReducedMotion();
 
   return (
     <section
       id="skills"
-      className="relative w-full py-24 px-6 font-syne overflow-hidden"
+      className="relative isolate w-full overflow-hidden bg-[#FAF9F6] px-4 py-20 font-syne text-[#292333] selection:bg-violet-200 sm:px-8 sm:py-24"
     >
-      {/* Decorative background glow */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 blur-[120px] rounded-full" />
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-0 h-80 w-[min(90%,700px)] -translate-x-1/2 rounded-full bg-violet-200/30 blur-[110px]" />
+        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-purple-200/20 blur-[100px]" />
+        <div className="absolute inset-0 opacity-[0.025] [background-image:linear-gradient(#51416F_1px,transparent_1px),linear-gradient(90deg,#51416F_1px,transparent_1px)] [background-size:72px_72px]" />
       </div>
 
-      <div className="mx-auto max-w-6xl relative z-10">
-        {/* Section Header */}
+      <div className="relative z-10 mx-auto max-w-6xl">
         <motion.div
-          initial={{
-            opacity: 0,
-            y: shouldReduceMotion ? 0 : 25,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={{ opacity: 0, y: reduce ? 0 : 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{
-            duration: 0.7,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="mb-16 flex flex-col items-start gap-4"
+          transition={{ duration: reduce ? 0 : 0.65, ease }}
+          className="mb-12 flex flex-col items-start gap-4 sm:mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 10 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.7,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            whileHover={{
-              scale: 1.04,
-              borderColor: "rgba(96,165,250,0.4)",
-              boxShadow: "0 0 30px rgba(59,130,246,0.15)",
-            }}
-            className="group relative flex items-center gap-3 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-blue-400 backdrop-blur-sm"
-          >
-            {/* Animated scanning light */}
-            <motion.div
-              className="absolute inset-y-0 -left-1/2 w-1/2 bg-linear-to-r from-transparent via-blue-400/20 to-transparent skew-x-[-20deg]"
-              animate={{
-                x: ["0%", "400%"],
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                repeatDelay: 1.5,
-                ease: "easeInOut",
-              }}
-            />
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white/80 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-[#51416F] shadow-sm shadow-violet-900/[0.03]">
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+            Technical Skills
+          </span>
 
-            {/* Outer rotating ring */}
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.7,
-                filter: "blur(8px)",
-              }}
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                filter: "blur(0px)",
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              whileHover={{
-                scale: 1.05,
-                borderColor: "rgba(99,102,241,0.5)",
-                boxShadow:
-                  "0 0 20px rgba(79,70,229,0.15), inset 0 0 20px rgba(6,182,212,0.05)",
-              }}
-              className="group relative flex items-center gap-3 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-blue-400 backdrop-blur-sm"
-            >
-              {/* Moving energy beam */}
-              <motion.span
-                className="absolute inset-y-0 -left-[40%] w-[35%] skew-x-[-25deg] bg-linear-to-r from-transparent via-cyan-400/30 to-transparent"
-                animate={{
-                  left: ["-40%", "120%"],
-                }}
-                transition={{
-                  duration: 2.2,
-                  repeat: Infinity,
-                  repeatDelay: 1.2,
-                  ease: "easeInOut",
-                }}
-              />
-
-              {/* Single orbital system */}
-              <motion.span
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 2.8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="relative flex h-4 w-4 shrink-0 items-center justify-center"
-              >
-                {/* Outer orbit */}
-                <span className="absolute inset-0 rounded-full border border-blue-400/30 border-t-cyan-400 border-r-indigo-400" />
-
-                {/* Inner orbit */}
-                <motion.span
-                  animate={{ rotate: -360 }}
-                  transition={{
-                    duration: 1.8,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute inset-0.75 rounded-full border border-fuchsia-400/30 border-b-fuchsia-400"
-                />
-
-                {/* One core */}
-                <motion.span
-                  animate={{
-                    scale: [0.8, 1.25, 0.8],
-                    opacity: [0.6, 1, 0.6],
-                    boxShadow: [
-                      "0 0 4px rgba(6,182,212,0.5)",
-                      "0 0 14px rgba(6,182,212,1)",
-                      "0 0 4px rgba(6,182,212,0.5)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 1.1,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="h-1.5 w-1.5 rounded-full bg-cyan-300"
-                />
-              </motion.span>
-
-              {/* Text */}
-              <motion.span
-                animate={{
-                  color: ["#60a5fa", "#22d3ee", "#a78bfa", "#60a5fa"],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="relative z-10"
-              >
-                Technical Skills
-              </motion.span>
-            </motion.div>
-
-            {/* Bottom progress line */}
-            <motion.span
-              className="absolute bottom-0 left-4 h-px bg-blue-400"
-              animate={{
-                width: ["0%", "calc(100% - 32px)", "0%"],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </motion.div>
-
-          <h2 className="text-5xl font-extrabold tracking-tight text-white md:text-7xl uppercase">
+          <h2 className="text-4xl font-extrabold uppercase tracking-[-0.045em] sm:text-5xl md:text-7xl">
             Tech{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-indigo-500">
-              STACK
+            <span className="bg-gradient-to-r from-[#51416F] via-violet-600 to-[#9675D9] bg-clip-text text-transparent">
+              Stack
             </span>
           </h2>
+
+          <p className="max-w-xl text-sm leading-7 text-[#777381] sm:text-base">
+            The technologies and tools I use to build modern, responsive, and
+            scalable web applications.
+          </p>
         </motion.div>
 
-        {/* 12-Column Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* 1. FRONTEND */}
-          <BentoCard
-            className="md:col-span-7"
-            spotlightColor="rgba(59, 130, 246, 0.15)"
-            delay={0}
-          >
-            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
-              <Code2 size={160} strokeWidth={1} />
-            </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
+          <BentoCard className="md:col-span-7" delay={0}>
+            <Code2 className="mb-6 text-violet-600" size={28} />
 
-            <h3 className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.3em] mb-4">
+            <h3 className="mb-3 text-[10px] font-bold uppercase tracking-[0.22em] text-violet-600">
               01. Frontend
             </h3>
 
-            <h4 className="text-4xl font-bold text-white mb-6 uppercase tracking-tighter leading-none">
-              React & <span className="text-slate-500">Next.js</span>
+            <h4 className="mb-5 text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
+              React & <span className="text-[#898391]">Next.js</span>
             </h4>
 
-            <p className="text-slate-400 text-lg leading-relaxed mb-8 max-w-md">
+            <p className="mb-7 max-w-md text-sm leading-7 text-[#777381] sm:text-base">
               Building{" "}
-              <span className="text-white">fast, responsive, and scalable</span>{" "}
+              <span className="font-semibold text-[#292333]">
+                fast, responsive, and scalable
+              </span>{" "}
               web applications with modern React architecture and TypeScript.
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {[
-                "TypeScript",
-                "Next.js",
-                "React",
-                "Tailwind",
-                "Framer Motion",
-              ].map((item) => (
+              {frontend.map((item) => (
                 <span
                   key={item}
-                  className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 uppercase tracking-widest hover:bg-white/10 hover:border-blue-400/30 transition-colors"
+                  className="rounded-lg border border-[#E8E2EF] bg-white/80 px-3 py-2 text-[10px] font-semibold tracking-wide text-[#625B70] transition-colors duration-200 hover:border-violet-300 hover:bg-violet-50 hover:text-violet-800 sm:text-[11px]"
                 >
                   {item}
                 </span>
@@ -243,101 +98,75 @@ export default function Skills() {
             </div>
           </BentoCard>
 
-          {/* 2. BACKEND */}
-          <BentoCard
-            className="md:col-span-5"
-            spotlightColor="rgba(16, 185, 129, 0.15)"
-            delay={0.1}
-          >
-            <Server className="text-emerald-400 mb-6" size={32} />
+          <BentoCard className="md:col-span-5" delay={0.1}>
+            <Server className="mb-6 text-emerald-600" size={28} />
 
-            <h3 className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.3em] mb-2">
+            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-700">
               02. Backend
             </h3>
 
-            <h4 className="text-2xl font-bold text-white uppercase tracking-tighter mb-4">
+            <h4 className="mb-6 text-2xl font-extrabold uppercase tracking-tight">
               APIs & Services
             </h4>
 
-            <div className="space-y-4 mb-6">
-              {["Node.js", "Python", "REST APIs"].map((skill) => (
+            <div className="mb-6 space-y-4">
+              {backend.map((skill) => (
                 <div key={skill} className="flex items-center gap-3">
-                  <div className="h-px w-4 bg-emerald-500" />
-                  <span className="text-xs font-bold text-slate-300 uppercase tracking-widest">
+                  <span className="h-px w-5 bg-emerald-500" />
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#625B70]">
                     {skill}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-auto pt-4 border-t border-white/5">
-              <p className="text-[11px] text-slate-500 italic">
-                From interface to server.
-              </p>
-            </div>
+            <p className="mt-auto border-t border-[#E8E2EF] pt-4 text-xs text-[#898391]">
+              From interface to server.
+            </p>
           </BentoCard>
 
-          {/* 3. DATABASE & TOOLS */}
-          <BentoCard
-            className="md:col-span-4"
-            spotlightColor="rgba(245, 158, 11, 0.15)"
-            delay={0.2}
-          >
-            <Database className="text-orange-400 mb-6" size={24} />
+          <BentoCard className="md:col-span-4" delay={0.15}>
+            <Database className="mb-6 text-orange-500" size={26} />
 
-            <h3 className="text-[10px] font-bold text-orange-400 uppercase tracking-[0.3em] mb-2">
+            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-orange-600">
               03. Data & Tools
             </h3>
 
-            <h4 className="text-xl font-bold text-white uppercase tracking-tighter mb-8">
+            <h4 className="mb-8 text-xl font-extrabold uppercase tracking-tight">
               Development Environment
             </h4>
 
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { n: "MongoDB", s: "Database" },
-                { n: "PostgreSQL", s: "Database" },
-                { n: "Git", s: "Versioning" },
-                { n: "Vercel", s: "Deployment" },
-              ].map((tool) => (
-                <div
-                  key={tool.n}
-                  className="group/tool transition-transform hover:translate-x-1"
-                >
-                  <div className="text-[11px] font-black text-white uppercase tracking-tighter flex items-center gap-2">
-                    <span className="h-1 w-1 bg-orange-500 rounded-full" />
+            <div className="grid grid-cols-2 gap-x-3 gap-y-6">
+              {tools.map((tool) => (
+                <div key={tool.n}>
+                  <p className="mb-1 flex items-center gap-2 text-[11px] font-bold text-[#292333]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
                     {tool.n}
-                  </div>
-
-                  <div className="text-[9px] text-slate-600 pl-3 uppercase tracking-widest">
+                  </p>
+                  <p className="pl-3.5 text-[9px] uppercase tracking-wider text-[#898391]">
                     {tool.s}
-                  </div>
+                  </p>
                 </div>
               ))}
             </div>
           </BentoCard>
 
-          {/* 4. PYTHON & SOFTWARE */}
-          <BentoCard
-            className="md:col-span-8"
-            spotlightColor="rgba(168, 85, 247, 0.15)"
-            delay={0.3}
-          >
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full">
-              <div className="max-w-xs">
-                <Terminal className="text-purple-400 mb-6" size={24} />
+          <BentoCard className="md:col-span-8" delay={0.2}>
+            <div className="flex w-full flex-col items-start justify-between gap-8 sm:flex-row sm:items-center sm:gap-10">
+              <div className="max-w-md">
+                <Terminal className="mb-6 text-purple-600" size={26} />
 
-                <h3 className="text-[10px] font-bold text-purple-400 uppercase tracking-[0.3em] mb-2">
+                <h3 className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-purple-700">
                   04. Software
                 </h3>
 
-                <h4 className="text-2xl font-bold text-white uppercase tracking-tighter mb-4">
+                <h4 className="mb-4 text-2xl font-extrabold uppercase tracking-tight">
                   Python & Problem Solving
                 </h4>
 
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <p className="text-sm leading-7 text-[#777381]">
                   Using{" "}
-                  <span className="text-white">
+                  <span className="font-semibold text-[#292333]">
                     Python and programming fundamentals
                   </span>{" "}
                   to solve problems, automate tasks, work with data, and build
@@ -345,29 +174,25 @@ export default function Skills() {
                 </p>
               </div>
 
-              <div className="relative flex items-end gap-3 h-32 pr-4">
-                {[40, 90, 60, 100].map((height, index) => (
+              <div className="flex h-28 shrink-0 items-end gap-2">
+                {[40, 65, 50, 85].map((height, i) => (
                   <motion.div
-                    key={index}
-                    initial={{
-                      height: 0,
-                    }}
-                    whileInView={{
-                      height: `${height}%`,
-                    }}
+                    key={height}
+                    initial={{ scaleY: reduce ? 1 : 0, opacity: 0 }}
+                    whileInView={{ scaleY: 1, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{
-                      delay: shouldReduceMotion ? 0 : index * 0.12,
-                      duration: shouldReduceMotion ? 0 : 0.9,
-                      ease: [0.22, 1, 0.36, 1],
+                      duration: reduce ? 0 : 0.55,
+                      delay: reduce ? 0 : i * 0.09,
+                      ease,
                     }}
-                    className="w-8 rounded-t-lg bg-linear-to-t from-purple-500/40 to-purple-500/10 border-x border-t border-purple-500/20"
+                    style={{ height: `${height}%`, transformOrigin: "bottom" }}
+                    className="w-6 rounded-t-md bg-gradient-to-t from-violet-500/60 to-violet-300/40 sm:w-8"
                   />
                 ))}
-
                 <MousePointer2
-                  size={16}
-                  className="absolute bottom-0 -right-2.5 text-white animate-bounce"
+                  size={15}
+                  className="mb-1 text-violet-500"
                 />
               </div>
             </div>
@@ -380,84 +205,47 @@ export default function Skills() {
 
 function BentoCard({
   children,
-  className,
-  spotlightColor,
+  className = "",
   delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
-  spotlightColor: string;
   delay?: number;
 }) {
+  const reduce = useReducedMotion();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const shouldReduceMotion = useReducedMotion();
 
   const spotlight = useTransform(
     [mouseX, mouseY],
     ([x, y]) =>
-      `radial-gradient(600px circle at ${x}px ${y}px, ${spotlightColor}, transparent 40%)`,
+      `radial-gradient(360px circle at ${x}px ${y}px, rgba(150,117,217,0.10), transparent 75%)`
   );
-
-  function onMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: React.MouseEvent<HTMLDivElement>) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
 
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        y: shouldReduceMotion ? 0 : 30,
-        scale: shouldReduceMotion ? 1 : 0.98,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.12,
-      }}
+      initial={{ opacity: 0, y: reduce ? 0 : 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12 }}
       transition={{
-        delay,
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
+        duration: reduce ? 0 : 0.6,
+        delay: reduce ? 0 : delay,
+        ease,
       }}
-      whileHover={
-        shouldReduceMotion
-          ? undefined
-          : {
-              y: -4,
-              transition: {
-                duration: 0.25,
-              },
-            }
-      }
-      onMouseMove={onMouseMove}
-      className={`group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#08080a] p-8 md:p-12 transition-colors hover:border-white/20 ${className}`}
+      whileHover={reduce ? undefined : { y: -4 }}
+      onMouseMove={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        mouseX.set(event.clientX - rect.left);
+        mouseY.set(event.clientY - rect.top);
+      }}
+      className={`group relative isolate overflow-hidden rounded-3xl border border-[#E8E2EF] bg-white/80 p-6 shadow-[0_8px_30px_rgba(41,35,51,0.025)] transition-colors duration-300 hover:border-violet-200 hover:shadow-[0_12px_35px_rgba(41,35,51,0.06)] sm:p-8 md:p-10 ${className}`}
     >
-      {/* Cursor Spotlight */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{
-          background: spotlight,
-        }}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ background: spotlight }}
       />
-
-      {/* Subtle top highlight */}
-      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-
-      <div className="relative z-10 h-full flex flex-col items-start">
-        {children}
-      </div>
+      {children}
     </motion.div>
   );
 }
