@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 💼 Personal Portfolio — Shaik Rasheed Basha
 
-First, run the development server:
+A personal developer portfolio built with Next.js and Tailwind CSS, featuring a contact form powered by Web3Forms.
+
+🌐 **Live Portfolio:** [Visit My Portfolio](https://your-portfolio-url.vercel.app/)
+
+---
+
+## 📌 Overview
+
+This portfolio website showcases my profile, technical skills, projects, and development journey through a modern web interface.
+
+Built with Next.js and Tailwind CSS, the application focuses on responsive design, clean layouts, and an accessible way for visitors to get in touch through the integrated contact form.
+
+## ✨ Features
+
+- 💼 Personal portfolio website
+- 👨‍💻 Profile and introduction
+- 🛠️ Technical skills showcase
+- 🚀 Project presentation
+- 📱 Responsive user interface
+- 📬 Contact form integration
+- ✉️ Web3Forms for form submissions
+- ⚡ Next.js-powered web experience
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Next.js** — React-based web framework
+- **React.js** — Component-based user interface
+- **Tailwind CSS** — Utility-first styling
+
+### Form Handling
+- **Web3Forms** — Contact form submission and email delivery
+
+### Hosting
+- **Vercel** — Deployment and hosting
+
+## 🌐 Live Website
+
+Explore my portfolio:
+
+**[Visit My Portfolio →](https://your-portfolio-url.vercel.app/)**
+
+## 📬 Contact Form
+
+The portfolio uses Web3Forms to handle contact form submissions without requiring a custom backend.
+
+Visitors can use the contact form to send messages directly through the configured form service.
+
+To configure Web3Forms for a local setup:
+
+1. Visit [Web3Forms](https://web3forms.com/).
+2. Obtain an access key for your form.
+3. Configure the key as required by the project.
+4. Test the form to confirm submissions are delivered successfully.
+
+Keep configuration secrets private where applicable, and follow Web3Forms' recommendations for safely handling access keys.
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+- Git (optional)
+
+### Installation
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/RasheedBShaik/portfolio.git
+```
+
+**2. Navigate to the project directory**
+
+```bash
+cd portfolio
+```
+
+**3. Install dependencies**
+
+```bash
+npm install
+```
+
+**4. Configure environment variables**
+
+Configure any required Web3Forms settings according to the existing project implementation.
+
+**5. Start the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the local URL displayed in your terminal, usually `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build the application:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Run the production server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Deployment
 
-## Deploy on Vercel
+The project can be deployed on Vercel.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Import the GitHub repository into [Vercel](https://vercel.com/).
+2. Configure the required project settings and environment variables.
+3. Deploy the application.
+4. Test the deployed portfolio and contact form.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👨‍💻 Author
+
+**Shaik Rasheed Basha**
+
+- GitHub: [@RasheedBShaik](https://github.com/RasheedBShaik)
+
+---
+
+⭐ Thank you for visiting my portfolio repository!
