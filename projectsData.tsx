@@ -117,7 +117,7 @@ export const projectData: Project[] = [
     stack: ["Next.js", "React.js", "Next Routing", "Tailwind"],
     github: "https://github.com/rasheedbshaik/pernati-naturals",
     live: "https://pernati-naturals.vercel.app/",
-    projectType: "singlepage",
+    projectType: "frontend",
   },
   {
     title: "Bharath Home Services",
@@ -127,7 +127,7 @@ export const projectData: Project[] = [
     stack: ["Next.js", "React.js", "Next Routing", "Tailwind"],
     github: "https://github.com/RasheedBShaik/bharath-home-services",
     live: "https://bharath-home-services.vercel.app/",
-    projectType: "singlepage",
+    projectType: "frontend",
   },
   {
     title: "Monito Pet Store",
@@ -252,6 +252,6 @@ export const projectData: Project[] = [
     stack: ["HTML", "Plain CSS", "JavaScript"],
     github: "https://github.com/RasheedBShaik/e-commerce-ui",
     live: "https://rasheedbshaik.github.io/e-commerce-ui",
-    projectType: "singlepage",
+    projectType: "frontend",
   },
 ];

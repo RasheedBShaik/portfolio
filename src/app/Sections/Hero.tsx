@@ -123,7 +123,7 @@ export default function Hero() {
             <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
           </motion.a>
           <motion.a
-            href="/resume/rasheed-basha.pdf"
+            href="/resume/rasheed.pdf"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={reduce ? undefined : { y: -3 }}
